@@ -4911,5 +4911,2456 @@
     "reviewStatus": "reviewed",
     "order": 63,
     "searchText": "option greeks intuition valuation & risk models maps each greek to the risk factor it measures. used for option risk reporting and hedging. underlying price sensitivity time decay delta change volatility sensitivity interest-rate sensitivity delta: ∂v/∂s; gamma: ∂²v/∂s²; theta: ∂v/∂t; vega: ∂v/∂σ; rho: ∂v/∂r vega is not represented by a greek letter in the name, but it measures volatility sensitivity. d-g-t-v-r: price, curvature, time, vol, rate."
+  },
+  {
+    "id": "apt-model",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Foundations",
+    "name": "Arbitrage Pricing Theory (APT)",
+    "kind": "formula",
+    "purpose": "APT — extends CAPM to multiple risk factors",
+    "realWorld": "Multi-factor return model used in equity risk attribution",
+    "keywords": [
+      "APT",
+      "arbitrage pricing theory",
+      "multi-factor model",
+      "factor beta",
+      "risk premium"
+    ],
+    "formula": "E(Rᵢ) = Rf + bᵢ₁RP₁ + bᵢ₂RP₂ + … + bᵢₖRPₖ",
+    "plainEnglish": "Expected return as a linear function of several risk-factor exposures, not just one.",
+    "notation": [
+      {
+        "symbol": "E(Rᵢ)",
+        "meaning": "expected return of asset i"
+      },
+      {
+        "symbol": "Rf",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "bᵢⱼ",
+        "meaning": "asset i's sensitivity (beta) to factor j"
+      },
+      {
+        "symbol": "RPⱼ",
+        "meaning": "risk premium for factor j"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "E(Rᵢ)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: expected return of asset i."
+      },
+      {
+        "symbol": "Rf",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "bᵢⱼ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: asset i's sensitivity (beta) to factor j."
+      },
+      {
+        "symbol": "RPⱼ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk premium for factor j."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Rf = 0.03",
+        "b1 = 1.2, RP1 = 0.05 (market factor)",
+        "b2 = 0.6, RP2 = 0.02 (size factor)",
+        "E(R) = 0.03 + 1.2(0.05) + 0.6(0.02) = 0.102"
+      ],
+      "interpretation": "Expected return of 10.2%, built from two separate factor exposures rather than one market beta."
+    },
+    "trap": "CAPM is just APT with a single factor (the market risk premium) — don't treat them as unrelated models.",
+    "memoryHook": "One factor = CAPM. Many factors = APT.",
+    "questions": [
+      {
+        "id": "apt-model-q1",
+        "prompt": "A stock has b1=1.5 to the market factor (RP=4%) and b2=0.8 to a size factor (RP=3%), Rf=2%. Find E(R).",
+        "type": "worked",
+        "choices": [],
+        "answer": "E(R) = 0.02 + 1.5(0.04) + 0.8(0.03) = 0.104 (10.4%)",
+        "hint": "Sum risk-free rate plus each beta times its factor's risk premium.",
+        "solutionSteps": [
+          "E(R) = Rf + b1·RP1 + b2·RP2",
+          "= 0.02 + 1.5(0.04) + 0.8(0.03)",
+          "= 0.02 + 0.06 + 0.024 = 0.104"
+        ],
+        "explanation": "10.4% expected return, decomposed across two independent risk-factor exposures."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 64,
+    "searchText": "arbitrage pricing theory (apt) foundations apt — extends capm to multiple risk factors multi-factor return model used in equity risk attribution apt arbitrage pricing theory multi-factor model factor beta risk premium e(rᵢ) = rf + bᵢ₁rp₁ + bᵢ₂rp₂ + … + bᵢₖrpₖ capm is just apt with a single factor (the market risk premium) — don't treat them as unrelated models. one factor = capm. many factors = apt."
+  },
+  {
+    "id": "fama-french",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Foundations",
+    "name": "Fama-French three-factor model",
+    "kind": "concept",
+    "purpose": "Explains returns using three systematic factors instead of one market beta.",
+    "realWorld": "Widely used in academic and practitioner risk attribution alongside or instead of CAPM.",
+    "keywords": [
+      "Fama-French",
+      "three-factor model",
+      "size factor",
+      "value factor",
+      "SMB",
+      "HML"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "Returns are modeled as a linear function of three factors: the market index return, a firm-size factor, and a book-to-market (value) factor.",
+      "It is a specific case of APT with exactly three named, empirically-chosen factors rather than a generic set.",
+      "Small-cap and high book-to-market ('value') stocks have historically earned a premium the single-factor CAPM doesn't explain — these two extra factors capture that."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "Don't confuse APT (generic, any number of factors) with Fama-French (a specific 3-factor implementation of APT).",
+    "memoryHook": "Market + Size + Value = the 3 F-F factors.",
+    "questions": [
+      {
+        "id": "fama-french-q1",
+        "prompt": "What three factors does the Fama-French model add to the single market factor used in CAPM?",
+        "type": "concept",
+        "choices": [],
+        "answer": "Market index return, firm size, and book-to-market ratio.",
+        "hint": "Think: what two extra risk premia have small, cheap (high book-to-market) stocks historically earned?",
+        "solutionSteps": [],
+        "explanation": "Fama-French model = market beta + size premium + value premium, explaining returns CAPM's single factor misses."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 65,
+    "searchText": "fama-french three-factor model foundations explains returns using three systematic factors instead of one market beta. widely used in academic and practitioner risk attribution alongside or instead of capm. fama-french three-factor model size factor value factor smb hml  don't confuse apt (generic, any number of factors) with fama-french (a specific 3-factor implementation of apt). market + size + value = the 3 f-f factors."
+  },
+  {
+    "id": "bayes-rule",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Bayes' Rule",
+    "kind": "formula",
+    "purpose": "Bayes' Rule — conditional probability updating",
+    "realWorld": "Used in credit scoring, fraud detection, and updating default probability estimates as new data arrives",
+    "keywords": [
+      "Bayes rule",
+      "conditional probability",
+      "posterior probability",
+      "prior probability"
+    ],
+    "formula": "P(A|B) = P(B|A) × P(A) / P(B)",
+    "plainEnglish": "Updates the probability of an event given new information about a related event.",
+    "notation": [
+      {
+        "symbol": "P(A|B)",
+        "meaning": "posterior probability of A given B occurred"
+      },
+      {
+        "symbol": "P(B|A)",
+        "meaning": "probability of B given A occurred"
+      },
+      {
+        "symbol": "P(A)",
+        "meaning": "prior probability of A"
+      },
+      {
+        "symbol": "P(B)",
+        "meaning": "prior probability of B"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "P(A|B)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: posterior probability of A given B occurred."
+      },
+      {
+        "symbol": "P(B|A)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: probability of B given A occurred."
+      },
+      {
+        "symbol": "P(A)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: prior probability of A."
+      },
+      {
+        "symbol": "P(B)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: prior probability of B."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "P(B|A) = 0.80",
+        "P(A) = 0.10",
+        "P(B) = 0.15",
+        "P(A|B) = (0.80 × 0.10) / 0.15 = 0.533"
+      ],
+      "interpretation": "Given that B occurred, the updated (posterior) probability of A is 53.3%, well above the 10% prior."
+    },
+    "trap": "Don't flip P(A|B) and P(B|A) — they are not the same number and mixing them up is the single most common Bayes' Rule error.",
+    "memoryHook": "Posterior = (Likelihood × Prior) ÷ Evidence.",
+    "questions": [
+      {
+        "id": "bayes-rule-q1",
+        "prompt": "P(B|A)=0.6, P(A)=0.25, P(B)=0.30. Find P(A|B).",
+        "type": "worked",
+        "choices": [],
+        "answer": "P(A|B) = (0.6 × 0.25) / 0.30 = 0.50",
+        "hint": "Multiply the likelihood by the prior, then divide by the unconditional probability of B.",
+        "solutionSteps": [
+          "P(A|B) = P(B|A) × P(A) / P(B)",
+          "= (0.6 × 0.25) / 0.30",
+          "= 0.15 / 0.30 = 0.50"
+        ],
+        "explanation": "A 50% posterior probability — new information doubled the initial 25% estimate."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 66,
+    "searchText": "bayes' rule quantitative analysis bayes' rule — conditional probability updating used in credit scoring, fraud detection, and updating default probability estimates as new data arrives bayes rule conditional probability posterior probability prior probability p(a|b) = p(b|a) × p(a) / p(b) don't flip p(a|b) and p(b|a) — they are not the same number and mixing them up is the single most common bayes' rule error. posterior = (likelihood × prior) ÷ evidence."
+  },
+  {
+    "id": "covariance",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Covariance",
+    "kind": "formula",
+    "purpose": "Covariance — joint variability of two variables",
+    "realWorld": "Building block for correlation, portfolio variance, beta, and hedge ratios",
+    "keywords": [
+      "covariance",
+      "joint variability",
+      "co-movement"
+    ],
+    "formula": "Cov(X,Y) = E{[X − E(X)][Y − E(Y)]}",
+    "plainEnglish": "The expected product of how far X and Y each deviate from their own means, together.",
+    "notation": [
+      {
+        "symbol": "Cov(X,Y)",
+        "meaning": "covariance between X and Y"
+      },
+      {
+        "symbol": "E(X), E(Y)",
+        "meaning": "expected values (means) of X and Y"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "Cov(X,Y)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: covariance between X and Y."
+      },
+      {
+        "symbol": "E(X), E(Y)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: expected values (means) of X and Y."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Pairs of (X-E(X)) and (Y-E(Y)) deviations are multiplied for each observation and averaged",
+        "Positive products dominate -> positive covariance",
+        "Cov(X,Y) = 0.014"
+      ],
+      "interpretation": "A positive covariance of 0.014 means X and Y tend to move in the same direction."
+    },
+    "trap": "Covariance's sign is meaningful but its magnitude alone is not — it's scale-dependent, which is exactly why correlation (a scaled, bounded version) is usually reported instead.",
+    "memoryHook": "Co-move together, on average.",
+    "questions": [
+      {
+        "id": "covariance-q1",
+        "prompt": "If corr(X,Y)=0.6, σ(X)=0.10, σ(Y)=0.20, find Cov(X,Y).",
+        "type": "worked",
+        "choices": [],
+        "answer": "Cov(X,Y) = corr(X,Y) × σ(X) × σ(Y) = 0.6 × 0.10 × 0.20 = 0.012",
+        "hint": "Rearrange the correlation formula: Cov = corr × σX × σY.",
+        "solutionSteps": [
+          "corr(X,Y) = Cov(X,Y) / [σ(X)σ(Y)]",
+          "0.6 = Cov / (0.10 × 0.20)",
+          "Cov = 0.6 × 0.02 = 0.012"
+        ],
+        "explanation": "A covariance of 0.012, consistent with a moderate positive correlation of 0.6."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 67,
+    "searchText": "covariance quantitative analysis covariance — joint variability of two variables building block for correlation, portfolio variance, beta, and hedge ratios covariance joint variability co-movement cov(x,y) = e{[x − e(x)][y − e(y)]} covariance's sign is meaningful but its magnitude alone is not — it's scale-dependent, which is exactly why correlation (a scaled, bounded version) is usually reported instead. co-move together, on average."
+  },
+  {
+    "id": "uniform-distribution",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Uniform distribution",
+    "kind": "formula",
+    "purpose": "Uniform distribution — equal-likelihood range",
+    "realWorld": "Simple baseline distribution used in simulation and as a building block for other models",
+    "keywords": [
+      "uniform distribution",
+      "equal probability",
+      "range"
+    ],
+    "formula": "P(x₁ ≤ X ≤ x₂) = (x₂ − x₁) / (b − a)",
+    "plainEnglish": "Every value in a range is equally likely; probability is just how much of the range you cover.",
+    "notation": [
+      {
+        "symbol": "a, b",
+        "meaning": "lower and upper limits of the distribution"
+      },
+      {
+        "symbol": "x₁, x₂",
+        "meaning": "bounds of the sub-range of interest"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "a, b",
+        "source": "Usually supplied directly in the question or calculated from earlier information: lower and upper limits of the distribution."
+      },
+      {
+        "symbol": "x₁, x₂",
+        "source": "Usually supplied directly in the question or calculated from earlier information: bounds of the sub-range of interest."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "a = 0, b = 20",
+        "x1 = 5, x2 = 9",
+        "P = (9-5)/(20-0) = 0.20"
+      ],
+      "interpretation": "A 20% probability the outcome falls between 5 and 9, since that's 20% of the full 0-to-20 range."
+    },
+    "trap": "The formula only works for sub-ranges fully inside [a,b] — don't apply it to a range that extends past the distribution's own limits.",
+    "memoryHook": "Probability = share of the range covered.",
+    "questions": [
+      {
+        "id": "uniform-distribution-q1",
+        "prompt": "A uniform distribution runs from 10 to 50. Find P(20 ≤ X ≤ 35).",
+        "type": "worked",
+        "choices": [],
+        "answer": "P = (35-20)/(50-10) = 15/40 = 0.375",
+        "hint": "Divide the width of the sub-range by the width of the whole distribution.",
+        "solutionSteps": [
+          "P(x1≤X≤x2) = (x2-x1)/(b-a)",
+          "= (35-20)/(50-10)",
+          "= 15/40 = 0.375"
+        ],
+        "explanation": "A 37.5% probability the value falls in that 15-unit-wide window out of the full 40-unit range."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 68,
+    "searchText": "uniform distribution quantitative analysis uniform distribution — equal-likelihood range simple baseline distribution used in simulation and as a building block for other models uniform distribution equal probability range p(x₁ ≤ x ≤ x₂) = (x₂ − x₁) / (b − a) the formula only works for sub-ranges fully inside [a,b] — don't apply it to a range that extends past the distribution's own limits. probability = share of the range covered."
+  },
+  {
+    "id": "binomial-distribution",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Binomial distribution",
+    "kind": "formula",
+    "purpose": "Binomial distribution — count of successes in n trials",
+    "realWorld": "Models default counts in a loan pool, pass/fail outcomes, and other discrete yes/no repeated trials",
+    "keywords": [
+      "binomial distribution",
+      "n trials",
+      "probability of success",
+      "expected value np"
+    ],
+    "formula": "p(x) = [n!/((n−x)!x!)] pˣ(1−p)ⁿ⁻ˣ,  E(X)=np,  Var(X)=np(1−p)",
+    "plainEnglish": "The probability of getting exactly x successes in n independent yes/no trials.",
+    "notation": [
+      {
+        "symbol": "n",
+        "meaning": "number of trials"
+      },
+      {
+        "symbol": "x",
+        "meaning": "number of successes"
+      },
+      {
+        "symbol": "p",
+        "meaning": "probability of success on one trial"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of trials."
+      },
+      {
+        "symbol": "x",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of successes."
+      },
+      {
+        "symbol": "p",
+        "source": "Usually supplied directly in the question or calculated from earlier information: probability of success on one trial."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "n = 10, p = 0.3",
+        "E(X) = np = 10 × 0.3 = 3.0",
+        "Var(X) = np(1-p) = 10 × 0.3 × 0.7 = 2.1"
+      ],
+      "interpretation": "On average 3 successes out of 10 trials are expected, with a variance of 2.1."
+    },
+    "trap": "E(X)=np and Var(X)=np(1-p) only hold for the binomial distribution — don't reuse them for other distributions.",
+    "memoryHook": "np = expected count. np(1-p) = variance of that count.",
+    "questions": [
+      {
+        "id": "binomial-distribution-q1",
+        "prompt": "n=20 loans, each with 5% independent default probability. Find the expected number of defaults and its variance.",
+        "type": "worked",
+        "choices": [],
+        "answer": "E(X) = 20 × 0.05 = 1.0; Var(X) = 20 × 0.05 × 0.95 = 0.95",
+        "hint": "Apply E(X)=np and Var(X)=np(1-p) directly.",
+        "solutionSteps": [
+          "E(X) = np = 20 × 0.05 = 1.0",
+          "Var(X) = np(1-p) = 20 × 0.05 × 0.95",
+          "= 0.95"
+        ],
+        "explanation": "Expect 1 default on average out of 20 loans, with variance 0.95 around that expectation."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 69,
+    "searchText": "binomial distribution quantitative analysis binomial distribution — count of successes in n trials models default counts in a loan pool, pass/fail outcomes, and other discrete yes/no repeated trials binomial distribution n trials probability of success expected value np p(x) = [n!/((n−x)!x!)] pˣ(1−p)ⁿ⁻ˣ,  e(x)=np,  var(x)=np(1−p) e(x)=np and var(x)=np(1-p) only hold for the binomial distribution — don't reuse them for other distributions. np = expected count. np(1-p) = variance of that count."
+  },
+  {
+    "id": "poisson-distribution",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Poisson distribution",
+    "kind": "formula",
+    "purpose": "Poisson distribution — count of rare events per unit",
+    "realWorld": "Models operational-risk loss event counts, defaults per period, and other rare, independent event counts",
+    "keywords": [
+      "Poisson distribution",
+      "lambda",
+      "rare events",
+      "operational risk loss frequency"
+    ],
+    "formula": "P(X=x) = λˣe⁻λ / x!",
+    "plainEnglish": "The probability of x rare events occurring in a fixed unit of time or space, given an average rate λ.",
+    "notation": [
+      {
+        "symbol": "λ",
+        "meaning": "average number of successes per unit (also the mean and variance)"
+      },
+      {
+        "symbol": "x",
+        "meaning": "number of successes of interest"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "λ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: average number of successes per unit (also the mean and variance)."
+      },
+      {
+        "symbol": "x",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of successes of interest."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "λ = 2 events per year",
+        "P(X=3) = 2³ × e⁻² / 3!",
+        "= 8 × 0.1353 / 6 = 0.1804"
+      ],
+      "interpretation": "An 18.0% probability of exactly 3 events occurring in a year when the average rate is 2 per year."
+    },
+    "trap": "Both the mean AND the variance of a Poisson variable equal λ — a single parameter drives both.",
+    "memoryHook": "λ = average rate = mean = variance, all in one number.",
+    "questions": [
+      {
+        "id": "poisson-distribution-q1",
+        "prompt": "Loss events average λ=1.5 per year. Find P(X=0), i.e. probability of zero events.",
+        "type": "worked",
+        "choices": [],
+        "answer": "P(X=0) = 1.5⁰ × e⁻¹·⁵ / 0! = 1 × 0.2231 / 1 = 0.2231",
+        "hint": "Anything to the power 0 is 1, and 0! = 1, so P(X=0) reduces to just e⁻λ.",
+        "solutionSteps": [
+          "P(X=0) = λ⁰e⁻λ/0!",
+          "= 1 × e⁻¹·⁵ / 1",
+          "= 0.2231"
+        ],
+        "explanation": "A 22.3% probability of no loss events at all in a year, given an average rate of 1.5 per year."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 70,
+    "searchText": "poisson distribution quantitative analysis poisson distribution — count of rare events per unit models operational-risk loss event counts, defaults per period, and other rare, independent event counts poisson distribution lambda rare events operational risk loss frequency p(x=x) = λˣe⁻λ / x! both the mean and the variance of a poisson variable equal λ — a single parameter drives both. λ = average rate = mean = variance, all in one number."
+  },
+  {
+    "id": "normal-confidence-bands",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Normal distribution confidence bands",
+    "kind": "concept",
+    "purpose": "Standard percentages of observations falling within fixed numbers of standard deviations of the mean.",
+    "realWorld": "Foundation for quick VaR sanity checks and confidence-interval construction under normality.",
+    "keywords": [
+      "normal distribution",
+      "confidence bands",
+      "1.65 standard deviations",
+      "1.96",
+      "2.58"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "90% of observations fall within ±1.65 standard deviations of the mean.",
+      "95% of observations fall within ±1.96 standard deviations of the mean.",
+      "99% of observations fall within ±2.58 standard deviations of the mean.",
+      "These three multipliers (1.65 / 1.96 / 2.58) are the most memorized numbers on the whole exam — they appear constantly in VaR and confidence-interval problems."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "1.65 is one-sided (used for one-tailed VaR); 1.96 and 2.58 are the two-sided versions most commonly quoted for confidence intervals — mixing up one- vs. two-tailed z-values is a classic error.",
+    "memoryHook": "90/95/99 -> 1.65/1.96/2.58.",
+    "questions": [
+      {
+        "id": "normal-confidence-bands-q1",
+        "prompt": "What z-value corresponds to a 95% two-sided confidence interval under normality?",
+        "type": "concept",
+        "choices": [],
+        "answer": "1.96 standard deviations.",
+        "hint": "This is the middle of the three standard memorized confidence-band multipliers.",
+        "solutionSteps": [],
+        "explanation": "1.96 standard deviations captures 95% of a normal distribution's observations, split symmetrically around the mean."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 71,
+    "searchText": "normal distribution confidence bands quantitative analysis standard percentages of observations falling within fixed numbers of standard deviations of the mean. foundation for quick var sanity checks and confidence-interval construction under normality. normal distribution confidence bands 1.65 standard deviations 1.96 2.58  1.65 is one-sided (used for one-tailed var); 1.96 and 2.58 are the two-sided versions most commonly quoted for confidence intervals — mixing up one- vs. two-tailed z-values is a classic error. 90/95/99 -> 1.65/1.96/2.58."
+  },
+  {
+    "id": "chi-squared-test",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Chi-squared test",
+    "kind": "formula",
+    "purpose": "Chi-squared test — hypothesis test for a variance",
+    "realWorld": "Used to test whether observed volatility is significantly different from an assumed/benchmark level",
+    "keywords": [
+      "chi-squared test",
+      "variance test",
+      "degrees of freedom n-1"
+    ],
+    "formula": "χ² = (n − 1)s² / σ₀²",
+    "plainEnglish": "Tests whether a sample's variance is consistent with a hypothesized population variance.",
+    "notation": [
+      {
+        "symbol": "n",
+        "meaning": "sample size"
+      },
+      {
+        "symbol": "s²",
+        "meaning": "sample variance"
+      },
+      {
+        "symbol": "σ₀²",
+        "meaning": "hypothesized population variance"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample size."
+      },
+      {
+        "symbol": "s²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample variance."
+      },
+      {
+        "symbol": "σ₀²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: hypothesized population variance."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "n = 25, s² = 0.04, σ0² = 0.03",
+        "df = n - 1 = 24",
+        "χ² = 24 × 0.04 / 0.03 = 32.0"
+      ],
+      "interpretation": "A chi-squared statistic of 32.0 with 24 degrees of freedom, compared against a critical value to test the variance hypothesis."
+    },
+    "trap": "Degrees of freedom is n−1, not n — an easy off-by-one error under exam pressure.",
+    "memoryHook": "(n-1) × sample variance ÷ hypothesized variance.",
+    "questions": [
+      {
+        "id": "chi-squared-test-q1",
+        "prompt": "n=16, s²=0.05, σ0²=0.04. Find the chi-squared test statistic and its degrees of freedom.",
+        "type": "worked",
+        "choices": [],
+        "answer": "χ² = 15 × 0.05 / 0.04 = 18.75, with 15 degrees of freedom",
+        "hint": "Degrees of freedom = n-1; plug into χ² = (n-1)s²/σ0².",
+        "solutionSteps": [
+          "df = n - 1 = 15",
+          "χ² = 15 × 0.05 / 0.04",
+          "= 0.75/0.04 = 18.75"
+        ],
+        "explanation": "A chi-squared statistic of 18.75 on 15 degrees of freedom."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 72,
+    "searchText": "chi-squared test quantitative analysis chi-squared test — hypothesis test for a variance used to test whether observed volatility is significantly different from an assumed/benchmark level chi-squared test variance test degrees of freedom n-1 χ² = (n − 1)s² / σ₀² degrees of freedom is n−1, not n — an easy off-by-one error under exam pressure. (n-1) × sample variance ÷ hypothesized variance."
+  },
+  {
+    "id": "f-test",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "F-test",
+    "kind": "formula",
+    "purpose": "F-test — equality of two variances",
+    "realWorld": "Used to compare the volatility of two portfolios, models, or time periods",
+    "keywords": [
+      "F-test",
+      "equality of variances",
+      "variance ratio"
+    ],
+    "formula": "F = s₁² / s₂²",
+    "plainEnglish": "Tests whether two populations have equal variances by comparing their sample variances as a ratio.",
+    "notation": [
+      {
+        "symbol": "s₁²",
+        "meaning": "sample variance of population 1 (larger, by convention)"
+      },
+      {
+        "symbol": "s₂²",
+        "meaning": "sample variance of population 2"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "s₁²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample variance of population 1 (larger, by convention)."
+      },
+      {
+        "symbol": "s₂²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample variance of population 2."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "s1² = 0.08 (larger)",
+        "s2² = 0.05",
+        "F = 0.08 / 0.05 = 1.60"
+      ],
+      "interpretation": "An F-statistic of 1.60, tested against an F critical value to determine if the two variances are significantly different."
+    },
+    "trap": "By convention put the larger sample variance in the numerator, so F is always ≥ 1 — this matters when comparing to a one-sided critical value table.",
+    "memoryHook": "Bigger variance on top, always.",
+    "questions": [
+      {
+        "id": "f-test-q1",
+        "prompt": "s1²=0.12, s2²=0.09. Compute the F-statistic.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = 0.12 / 0.09 = 1.33",
+        "hint": "Larger variance goes in the numerator.",
+        "solutionSteps": [
+          "F = s1² / s2²",
+          "= 0.12 / 0.09",
+          "= 1.33"
+        ],
+        "explanation": "An F-statistic of 1.33, compared to a critical F-value to test if the variances differ significantly."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 73,
+    "searchText": "f-test quantitative analysis f-test — equality of two variances used to compare the volatility of two portfolios, models, or time periods f-test equality of variances variance ratio f = s₁² / s₂² by convention put the larger sample variance in the numerator, so f is always ≥ 1 — this matters when comparing to a one-sided critical value table. bigger variance on top, always."
+  },
+  {
+    "id": "population-mean-variance",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Population mean and variance",
+    "kind": "formula",
+    "purpose": "Population mean & variance — parameters, not estimates",
+    "realWorld": "The baseline definitions every sample statistic (x̄, s²) is trying to estimate",
+    "keywords": [
+      "population mean",
+      "population variance",
+      "parameter vs statistic"
+    ],
+    "formula": "μ = ΣXᵢ/N,   σ² = Σ(Xᵢ − μ)²/N",
+    "plainEnglish": "The average value across an entire population, and the average squared distance from that average.",
+    "notation": [
+      {
+        "symbol": "μ",
+        "meaning": "population mean"
+      },
+      {
+        "symbol": "N",
+        "meaning": "population size"
+      },
+      {
+        "symbol": "σ²",
+        "meaning": "population variance"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "μ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: population mean."
+      },
+      {
+        "symbol": "N",
+        "source": "Usually supplied directly in the question or calculated from earlier information: population size."
+      },
+      {
+        "symbol": "σ²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: population variance."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Population: {2, 4, 6, 8}, N=4",
+        "μ = (2+4+6+8)/4 = 5",
+        "σ² = [(2-5)²+(4-5)²+(6-5)²+(8-5)²]/4 = 20/4 = 5"
+      ],
+      "interpretation": "Population mean of 5 and population variance of 5 for this small dataset."
+    },
+    "trap": "Population variance divides by N; sample variance divides by n−1 — using the wrong denominator is one of the most common quant-section errors.",
+    "memoryHook": "Population = divide by N (the whole thing).",
+    "questions": [
+      {
+        "id": "population-mean-variance-q1",
+        "prompt": "Population {1,3,5,7,9}, N=5. Find μ and σ².",
+        "type": "worked",
+        "choices": [],
+        "answer": "μ = 25/5 = 5; σ² = [(1-5)²+(3-5)²+(5-5)²+(7-5)²+(9-5)²]/5 = 40/5 = 8",
+        "hint": "Sum and divide by N for the mean; sum squared deviations and divide by N for the variance.",
+        "solutionSteps": [
+          "μ = (1+3+5+7+9)/5 = 5",
+          "Σ(Xi-μ)² = 16+4+0+4+16 = 40",
+          "σ² = 40/5 = 8"
+        ],
+        "explanation": "A population mean of 5 and population variance of 8."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 74,
+    "searchText": "population mean and variance quantitative analysis population mean & variance — parameters, not estimates the baseline definitions every sample statistic (x̄, s²) is trying to estimate population mean population variance parameter vs statistic μ = σxᵢ/n,   σ² = σ(xᵢ − μ)²/n population variance divides by n; sample variance divides by n−1 — using the wrong denominator is one of the most common quant-section errors. population = divide by n (the whole thing)."
+  },
+  {
+    "id": "sample-variance",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Sample variance",
+    "kind": "formula",
+    "purpose": "Sample variance — unbiased estimator of population variance",
+    "realWorld": "The standard variance estimate computed from any real dataset, feeding directly into t-tests and confidence intervals",
+    "keywords": [
+      "sample variance",
+      "n-1 denominator",
+      "unbiased estimator",
+      "Bessel's correction"
+    ],
+    "formula": "s² = Σ(Xᵢ − X̄)² / (n − 1)",
+    "plainEnglish": "The average squared distance from the sample mean, using n−1 to correct for estimation bias.",
+    "notation": [
+      {
+        "symbol": "X̄",
+        "meaning": "sample mean"
+      },
+      {
+        "symbol": "n",
+        "meaning": "sample size"
+      },
+      {
+        "symbol": "s²",
+        "meaning": "sample variance"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "X̄",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample mean."
+      },
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample size."
+      },
+      {
+        "symbol": "s²",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample variance."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Sample: {4, 6, 8}, X̄ = 6",
+        "Σ(Xi-X̄)² = 4+0+4 = 8",
+        "s² = 8/(3-1) = 4"
+      ],
+      "interpretation": "A sample variance of 4.0, using n−1=2 in the denominator rather than n=3."
+    },
+    "trap": "Using n−1 (not n) makes s² an unbiased estimator of σ² — this is why it's called Bessel's correction, and it's the single biggest source of formula mix-ups on this topic.",
+    "memoryHook": "Sample = divide by (n-1), not n.",
+    "questions": [
+      {
+        "id": "sample-variance-q1",
+        "prompt": "Sample {5, 9, 13}, find X̄ and s².",
+        "type": "worked",
+        "choices": [],
+        "answer": "X̄ = 9; s² = [(5-9)²+(9-9)²+(13-9)²]/(3-1) = 32/2 = 16",
+        "hint": "Divide the sum of squared deviations by n-1, not n.",
+        "solutionSteps": [
+          "X̄ = (5+9+13)/3 = 9",
+          "Σ(Xi-X̄)² = 16+0+16 = 32",
+          "s² = 32/2 = 16"
+        ],
+        "explanation": "A sample variance of 16, using the n−1=2 denominator."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 75,
+    "searchText": "sample variance quantitative analysis sample variance — unbiased estimator of population variance the standard variance estimate computed from any real dataset, feeding directly into t-tests and confidence intervals sample variance n-1 denominator unbiased estimator bessel's correction s² = σ(xᵢ − x̄)² / (n − 1) using n−1 (not n) makes s² an unbiased estimator of σ² — this is why it's called bessel's correction, and it's the single biggest source of formula mix-ups on this topic. sample = divide by (n-1), not n."
+  },
+  {
+    "id": "sample-covariance",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Sample covariance",
+    "kind": "formula",
+    "purpose": "Sample covariance — estimating joint variability from data",
+    "realWorld": "Computed directly from a return dataset before deriving correlation or portfolio variance",
+    "keywords": [
+      "sample covariance",
+      "paired observations",
+      "n-1 denominator"
+    ],
+    "formula": "Σ(Xᵢ − X̄)(Yᵢ − Ȳ) / (n − 1)",
+    "plainEnglish": "The sample-based estimate of how two variables move together, again using n−1 in the denominator.",
+    "notation": [
+      {
+        "symbol": "X̄, Ȳ",
+        "meaning": "sample means of X and Y"
+      },
+      {
+        "symbol": "n",
+        "meaning": "number of paired observations"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "X̄, Ȳ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: sample means of X and Y."
+      },
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of paired observations."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Pairs: (1,2),(2,4),(3,5); X̄=2, Ȳ=3.67",
+        "Σ(Xi-X̄)(Yi-Ȳ) = (-1)(-1.67)+(0)(0.33)+(1)(1.33) = 3.0",
+        "Cov = 3.0/(3-1) = 1.5"
+      ],
+      "interpretation": "A sample covariance of 1.5, indicating X and Y tend to move together in this small dataset."
+    },
+    "trap": "Like sample variance, sample covariance divides by n−1 for the same unbiasedness reason — it's not a coincidence the two formulas look alike.",
+    "memoryHook": "Same n-1 rule as sample variance, applied to a pair.",
+    "questions": [
+      {
+        "id": "sample-covariance-q1",
+        "prompt": "Pairs (2,3),(4,5),(6,10); X̄=4, Ȳ=6. Find sample covariance.",
+        "type": "worked",
+        "choices": [],
+        "answer": "Σ(Xi-X̄)(Yi-Ȳ) = (-2)(-3)+(0)(-1)+(2)(4) = 6+0+8=14; Cov = 14/2 = 7",
+        "hint": "Multiply each X and Y deviation pair, sum them, divide by n-1.",
+        "solutionSteps": [
+          "Deviations: (-2,-3),(0,-1),(2,4)",
+          "Products: 6, 0, 8 -> sum = 14",
+          "Cov = 14/(3-1) = 7"
+        ],
+        "explanation": "A sample covariance of 7, reflecting strong positive co-movement between X and Y."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 76,
+    "searchText": "sample covariance quantitative analysis sample covariance — estimating joint variability from data computed directly from a return dataset before deriving correlation or portfolio variance sample covariance paired observations n-1 denominator σ(xᵢ − x̄)(yᵢ − ȳ) / (n − 1) like sample variance, sample covariance divides by n−1 for the same unbiasedness reason — it's not a coincidence the two formulas look alike. same n-1 rule as sample variance, applied to a pair."
+  },
+  {
+    "id": "multiple-regression",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Multiple regression",
+    "kind": "formula",
+    "purpose": "Multiple regression — more than one explanatory variable",
+    "realWorld": "Used whenever a single factor (simple regression) isn't enough to explain the dependent variable, e.g. multi-factor risk models",
+    "keywords": [
+      "multiple regression",
+      "multiple independent variables",
+      "partial slope coefficient"
+    ],
+    "formula": "Y = α + β₁X₁ + β₂X₂ + … + βₖXₖ + ε",
+    "plainEnglish": "Explains one dependent variable using several independent variables at once, each with its own slope.",
+    "notation": [
+      {
+        "symbol": "Y",
+        "meaning": "dependent variable"
+      },
+      {
+        "symbol": "Xⱼ",
+        "meaning": "j-th independent variable"
+      },
+      {
+        "symbol": "βⱼ",
+        "meaning": "slope coefficient on Xⱼ, holding other X's constant"
+      },
+      {
+        "symbol": "ε",
+        "meaning": "error term"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "Y",
+        "source": "Usually supplied directly in the question or calculated from earlier information: dependent variable."
+      },
+      {
+        "symbol": "Xⱼ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: j-th independent variable."
+      },
+      {
+        "symbol": "βⱼ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: slope coefficient on Xⱼ, holding other X's constant."
+      },
+      {
+        "symbol": "ε",
+        "source": "Usually supplied directly in the question or calculated from earlier information: error term."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Y = 2 + 1.5X1 + 0.8X2",
+        "X1 = 4, X2 = 3",
+        "Y = 2 + 1.5(4) + 0.8(3) = 10.4"
+      ],
+      "interpretation": "A predicted Y of 10.4, combining the separate contributions of X1 and X2."
+    },
+    "trap": "Each βⱼ is a *partial* slope — the effect of Xⱼ holding every other X constant, not its effect in isolation.",
+    "memoryHook": "One Y, many X's, each with its own slope.",
+    "questions": [
+      {
+        "id": "multiple-regression-q1",
+        "prompt": "Y = 5 + 2X1 - 1X2. If X1=3 and X2=4, find Y.",
+        "type": "worked",
+        "choices": [],
+        "answer": "Y = 5 + 2(3) - 1(4) = 5 + 6 - 4 = 7",
+        "hint": "Substitute each X into its own term and sum with the intercept.",
+        "solutionSteps": [
+          "Y = 5 + 2(3) - 1(4)",
+          "= 5 + 6 - 4",
+          "= 7"
+        ],
+        "explanation": "A predicted value of 7 from the two-variable regression."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 77,
+    "searchText": "multiple regression quantitative analysis multiple regression — more than one explanatory variable used whenever a single factor (simple regression) isn't enough to explain the dependent variable, e.g. multi-factor risk models multiple regression multiple independent variables partial slope coefficient y = α + β₁x₁ + β₂x₂ + … + βₖxₖ + ε each βⱼ is a *partial* slope — the effect of xⱼ holding every other x constant, not its effect in isolation. one y, many x's, each with its own slope."
+  },
+  {
+    "id": "total-sum-of-squares",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Total Sum of Squares (TSS)",
+    "kind": "formula",
+    "purpose": "TSS = ESS + RSS — the regression variance decomposition",
+    "realWorld": "The foundation R² is built from: R² = ESS/TSS = 1 − RSS/TSS",
+    "keywords": [
+      "total sum of squares",
+      "explained sum of squares",
+      "residual sum of squares",
+      "variance decomposition"
+    ],
+    "formula": "TSS = ESS + RSS,   Σ(Yᵢ−Ȳ)² = Σ(Ŷᵢ−Ȳ)² + Σ(Yᵢ−Ŷᵢ)²",
+    "plainEnglish": "Total variation in Y splits cleanly into the part the regression explains and the part it doesn't.",
+    "notation": [
+      {
+        "symbol": "TSS",
+        "meaning": "total sum of squares"
+      },
+      {
+        "symbol": "ESS",
+        "meaning": "explained sum of squares (by the regression)"
+      },
+      {
+        "symbol": "RSS",
+        "meaning": "residual (unexplained) sum of squares"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "TSS",
+        "source": "Usually supplied directly in the question or calculated from earlier information: total sum of squares."
+      },
+      {
+        "symbol": "ESS",
+        "source": "Usually supplied directly in the question or calculated from earlier information: explained sum of squares (by the regression)."
+      },
+      {
+        "symbol": "RSS",
+        "source": "Usually supplied directly in the question or calculated from earlier information: residual (unexplained) sum of squares."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "TSS = 500",
+        "RSS = 120",
+        "ESS = TSS - RSS = 500 - 120 = 380"
+      ],
+      "interpretation": "Of the 500 total variation units, 380 are explained by the regression and 120 remain unexplained."
+    },
+    "trap": "R² = ESS/TSS, NOT RSS/TSS — it's easy to grab the wrong sum of squares under time pressure.",
+    "memoryHook": "Total = Explained + Residual (leftover).",
+    "questions": [
+      {
+        "id": "total-sum-of-squares-q1",
+        "prompt": "TSS=800, ESS=600. Find RSS and R².",
+        "type": "worked",
+        "choices": [],
+        "answer": "RSS = 800 - 600 = 200; R² = 600/800 = 0.75",
+        "hint": "RSS is whatever TSS doesn't explain; R² is ESS divided by TSS.",
+        "solutionSteps": [
+          "RSS = TSS - ESS = 800 - 600 = 200",
+          "R² = ESS/TSS = 600/800",
+          "= 0.75"
+        ],
+        "explanation": "75% of the total variation in Y is explained by the regression."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 78,
+    "searchText": "total sum of squares (tss) quantitative analysis tss = ess + rss — the regression variance decomposition the foundation r² is built from: r² = ess/tss = 1 − rss/tss total sum of squares explained sum of squares residual sum of squares variance decomposition tss = ess + rss,   σ(yᵢ−ȳ)² = σ(ŷᵢ−ȳ)² + σ(yᵢ−ŷᵢ)² r² = ess/tss, not rss/tss — it's easy to grab the wrong sum of squares under time pressure. total = explained + residual (leftover)."
+  },
+  {
+    "id": "ar1-process",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Autoregressive AR(1) process",
+    "kind": "formula",
+    "purpose": "AR(1) process — a variable regressed on its own lag",
+    "realWorld": "Building block for modeling and forecasting time series such as interest rates or volatility",
+    "keywords": [
+      "AR(1)",
+      "autoregressive process",
+      "lagged variable",
+      "covariance stationary"
+    ],
+    "formula": "yₜ = δ + Φyₜ₋₁ + εₜ",
+    "plainEnglish": "This period's value depends on last period's value, scaled by Φ, plus a constant and random noise.",
+    "notation": [
+      {
+        "symbol": "δ",
+        "meaning": "intercept term"
+      },
+      {
+        "symbol": "yₜ₋₁",
+        "meaning": "one-period-lagged value of the series"
+      },
+      {
+        "symbol": "Φ",
+        "meaning": "coefficient on the lagged value"
+      },
+      {
+        "symbol": "εₜ",
+        "meaning": "error term"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "δ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: intercept term."
+      },
+      {
+        "symbol": "yₜ₋₁",
+        "source": "Usually supplied directly in the question or calculated from earlier information: one-period-lagged value of the series."
+      },
+      {
+        "symbol": "Φ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: coefficient on the lagged value."
+      },
+      {
+        "symbol": "εₜ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: error term."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "δ = 0.5, Φ = 0.6",
+        "yt-1 = 4.0",
+        "yt = 0.5 + 0.6(4.0) = 2.9 (ignoring the random error term)"
+      ],
+      "interpretation": "The model predicts a value of 2.9 for the current period, based purely on last period's observed value of 4.0."
+    },
+    "trap": "Covariance stationarity (constant mean, variance, and autocovariance over time) is a *requirement* for AR models to be meaningful — an AR(1) fit to a non-stationary series is unstable and unreliable.",
+    "memoryHook": "This period = intercept + Φ × last period.",
+    "questions": [
+      {
+        "id": "ar1-process-q1",
+        "prompt": "δ=1.0, Φ=0.5, yt-1=6. Forecast yt (ignoring the error term).",
+        "type": "worked",
+        "choices": [],
+        "answer": "yt = 1.0 + 0.5(6) = 4.0",
+        "hint": "Plug yt-1 into the AR(1) equation along with δ and Φ.",
+        "solutionSteps": [
+          "yt = δ + Φyt-1",
+          "= 1.0 + 0.5(6)",
+          "= 4.0"
+        ],
+        "explanation": "A forecast value of 4.0 for the current period."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 79,
+    "searchText": "autoregressive ar(1) process quantitative analysis ar(1) process — a variable regressed on its own lag building block for modeling and forecasting time series such as interest rates or volatility ar(1) autoregressive process lagged variable covariance stationary yₜ = δ + φyₜ₋₁ + εₜ covariance stationarity (constant mean, variance, and autocovariance over time) is a *requirement* for ar models to be meaningful — an ar(1) fit to a non-stationary series is unstable and unreliable. this period = intercept + φ × last period."
+  },
+  {
+    "id": "kendalls-tau",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Quantitative Analysis",
+    "name": "Kendall's Tau",
+    "kind": "formula",
+    "purpose": "Kendall's Tau — rank-based correlation via pair concordance",
+    "realWorld": "An alternative to Spearman's rank correlation for measuring the strength of a monotonic relationship",
+    "keywords": [
+      "Kendall's tau",
+      "concordant pairs",
+      "discordant pairs",
+      "rank correlation"
+    ],
+    "formula": "τ = (n_c − n_d) / [n(n−1)/2]",
+    "plainEnglish": "Measures rank correlation using the balance of concordant vs. discordant pairs of observations.",
+    "notation": [
+      {
+        "symbol": "n_c",
+        "meaning": "number of concordant pairs (rankings agree)"
+      },
+      {
+        "symbol": "n_d",
+        "meaning": "number of discordant pairs (rankings disagree)"
+      },
+      {
+        "symbol": "n",
+        "meaning": "number of paired observations"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "n_c",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of concordant pairs (rankings agree)."
+      },
+      {
+        "symbol": "n_d",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of discordant pairs (rankings disagree)."
+      },
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of paired observations."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "n = 6 pairs -> total pairs = 6×5/2 = 15",
+        "nc = 12, nd = 3",
+        "τ = (12-3)/15 = 0.60"
+      ],
+      "interpretation": "A Kendall's Tau of 0.60 indicates a fairly strong positive rank relationship between the two variables."
+    },
+    "trap": "The denominator is the TOTAL number of pairs, n(n−1)/2 — not n itself. Forgetting to compute total pairs first is the most common error here.",
+    "memoryHook": "(Agreements − disagreements) ÷ total pairs.",
+    "questions": [
+      {
+        "id": "kendalls-tau-q1",
+        "prompt": "n=5 observations, nc=8, nd=2. Find Kendall's Tau.",
+        "type": "worked",
+        "choices": [],
+        "answer": "Total pairs = 5×4/2 = 10; τ = (8-2)/10 = 0.60",
+        "hint": "First compute total pairs n(n-1)/2, then apply (nc-nd)/total.",
+        "solutionSteps": [
+          "Total pairs = 5(4)/2 = 10",
+          "τ = (8-2)/10",
+          "= 0.60"
+        ],
+        "explanation": "A Kendall's Tau of 0.60, consistent with a moderately strong positive rank relationship."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 80,
+    "searchText": "kendall's tau quantitative analysis kendall's tau — rank-based correlation via pair concordance an alternative to spearman's rank correlation for measuring the strength of a monotonic relationship kendall's tau concordant pairs discordant pairs rank correlation τ = (n_c − n_d) / [n(n−1)/2] the denominator is the total number of pairs, n(n−1)/2 — not n itself. forgetting to compute total pairs first is the most common error here. (agreements − disagreements) ÷ total pairs."
+  },
+  {
+    "id": "hedge-basis",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Basis (in a hedge)",
+    "kind": "concept",
+    "purpose": "The difference between the spot price of the hedged asset and the futures price of the hedging instrument.",
+    "realWorld": "Basis risk is what remains even after a hedge is put on — it's why hedges are rarely perfect.",
+    "keywords": [
+      "basis",
+      "spot price",
+      "futures price",
+      "basis risk"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "Basis = spot price of the hedged asset − futures price of the hedging instrument.",
+      "When the asset being hedged is exactly the same as the asset underlying the futures contract, basis converges to zero at contract maturity.",
+      "Basis risk arises whenever the hedged asset and the hedging instrument's underlying aren't identical, or the hedge horizon doesn't match contract expiry."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "Zero basis at maturity only holds for a *perfect* hedge (same underlying asset) — cross-hedges (different but correlated assets) retain basis risk even at expiry.",
+    "memoryHook": "Basis = Spot − Futures.",
+    "questions": [
+      {
+        "id": "hedge-basis-q1",
+        "prompt": "Why does basis risk exist even in a well-constructed hedge?",
+        "type": "concept",
+        "choices": [],
+        "answer": "Because the hedged asset and the futures contract's underlying asset (or maturity) rarely match exactly, so their prices don't move in perfect lockstep.",
+        "hint": "Think about what happens when you hedge jet fuel exposure using crude oil futures — they're related but not identical.",
+        "solutionSteps": [],
+        "explanation": "Basis risk is the residual risk from imperfect correlation between the hedged asset and the hedging instrument — it's reduced, not eliminated, by hedging."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 81,
+    "searchText": "basis (in a hedge) financial markets the difference between the spot price of the hedged asset and the futures price of the hedging instrument. basis risk is what remains even after a hedge is put on — it's why hedges are rarely perfect. basis spot price futures price basis risk  zero basis at maturity only holds for a *perfect* hedge (same underlying asset) — cross-hedges (different but correlated assets) retain basis risk even at expiry. basis = spot − futures."
+  },
+  {
+    "id": "ppp-forex",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Purchasing power parity (PPP)",
+    "kind": "formula",
+    "purpose": "PPP — inflation differentials drive currency moves",
+    "realWorld": "A theoretical anchor for long-run exchange rate forecasting",
+    "keywords": [
+      "purchasing power parity",
+      "PPP",
+      "inflation differential",
+      "exchange rate"
+    ],
+    "formula": "%ΔS = inflation(foreign) − inflation(domestic)",
+    "plainEnglish": "Exchange rate changes should offset the inflation difference between two countries.",
+    "notation": [
+      {
+        "symbol": "%ΔS",
+        "meaning": "percentage change in the spot exchange rate"
+      },
+      {
+        "symbol": "inflation(foreign)",
+        "meaning": "foreign inflation rate"
+      },
+      {
+        "symbol": "inflation(domestic)",
+        "meaning": "domestic inflation rate"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "%ΔS",
+        "source": "Usually supplied directly in the question or calculated from earlier information: percentage change in the spot exchange rate."
+      },
+      {
+        "symbol": "inflation(foreign)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: foreign inflation rate."
+      },
+      {
+        "symbol": "inflation(domestic)",
+        "source": "Usually supplied directly in the question or calculated from earlier information: domestic inflation rate."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Foreign inflation = 6%",
+        "Domestic inflation = 2%",
+        "%ΔS = 6% - 2% = 4% (foreign currency should depreciate ~4%)"
+      ],
+      "interpretation": "The higher-inflation country's currency is expected to depreciate by roughly the inflation differential, 4%."
+    },
+    "trap": "PPP is a long-run theoretical relationship — it consistently fails to predict short-run exchange rate moves, which is itself a common exam point.",
+    "memoryHook": "High inflation currency -> expected to weaken.",
+    "questions": [
+      {
+        "id": "ppp-forex-q1",
+        "prompt": "Domestic inflation = 3%, foreign inflation = 8%. What does PPP predict for %ΔS?",
+        "type": "worked",
+        "choices": [],
+        "answer": "%ΔS = 8% - 3% = 5% (the foreign currency is expected to depreciate about 5% against the domestic currency)",
+        "hint": "Subtract domestic inflation from foreign inflation.",
+        "solutionSteps": [
+          "%ΔS = inflation(foreign) - inflation(domestic)",
+          "= 8% - 3%",
+          "= 5%"
+        ],
+        "explanation": "PPP predicts roughly a 5% depreciation of the higher-inflation (foreign) currency."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 82,
+    "searchText": "purchasing power parity (ppp) financial markets ppp — inflation differentials drive currency moves a theoretical anchor for long-run exchange rate forecasting purchasing power parity ppp inflation differential exchange rate %δs = inflation(foreign) − inflation(domestic) ppp is a long-run theoretical relationship — it consistently fails to predict short-run exchange rate moves, which is itself a common exam point. high inflation currency -> expected to weaken."
+  },
+  {
+    "id": "forward-price-cashflows",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward price — asset with cash flows",
+    "kind": "formula",
+    "purpose": "Forward price with income — subtract PV of cash flows first",
+    "realWorld": "Used for forward contracts on income-paying assets such as coupon bonds",
+    "keywords": [
+      "forward price",
+      "known cash flows",
+      "coupon-paying asset",
+      "cost of carry"
+    ],
+    "formula": "F = (S − I) × (1 + r)^T",
+    "plainEnglish": "Cash flows the asset pays out (like coupons) reduce the effective cost of carry, so they're subtracted before compounding.",
+    "notation": [
+      {
+        "symbol": "S",
+        "meaning": "spot price"
+      },
+      {
+        "symbol": "I",
+        "meaning": "present value of known cash flows/income during the contract"
+      },
+      {
+        "symbol": "r",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "T",
+        "meaning": "time to maturity"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "S",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot price."
+      },
+      {
+        "symbol": "I",
+        "source": "Usually supplied directly in the question or calculated from earlier information: present value of known cash flows/income during the contract."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "T",
+        "source": "Usually supplied directly in the question or calculated from earlier information: time to maturity."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "S = 100, I = 4 (PV of coupons), r = 5%, T = 1",
+        "F = (100 - 4) × (1.05)¹ = 96 × 1.05 = 100.80"
+      ],
+      "interpretation": "The fair forward price is 100.80, lower than the no-income case because the asset's own cash flows offset some financing cost."
+    },
+    "trap": "Subtract I from S BEFORE compounding, not after — reversing the order gives the wrong answer.",
+    "memoryHook": "(Spot minus income), then compound.",
+    "questions": [
+      {
+        "id": "forward-price-cashflows-q1",
+        "prompt": "S=200, I=10, r=4%, T=2. Find F.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = (200-10) × (1.04)² = 190 × 1.0816 = 205.50",
+        "hint": "Subtract the income first, then compound over T years.",
+        "solutionSteps": [
+          "F = (S-I)(1+r)^T",
+          "= (200-10)(1.04)²",
+          "= 190 × 1.0816 = 205.50"
+        ],
+        "explanation": "A fair forward price of approximately 205.50."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 83,
+    "searchText": "forward price — asset with cash flows financial markets forward price with income — subtract pv of cash flows first used for forward contracts on income-paying assets such as coupon bonds forward price known cash flows coupon-paying asset cost of carry f = (s − i) × (1 + r)^t subtract i from s before compounding, not after — reversing the order gives the wrong answer. (spot minus income), then compound."
+  },
+  {
+    "id": "forward-price-dividend-yield",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward price — continuous dividend yield",
+    "kind": "formula",
+    "purpose": "Forward price with dividend yield — index futures pricing",
+    "realWorld": "Standard formula for pricing futures/forwards on dividend-paying stock indices",
+    "keywords": [
+      "forward price",
+      "dividend yield",
+      "stock index futures"
+    ],
+    "formula": "F = S × [(1 + r) / (1 + q)]^T",
+    "plainEnglish": "A continuous dividend yield lowers the forward price relative to the no-income case, similar to a cash flow.",
+    "notation": [
+      {
+        "symbol": "S",
+        "meaning": "spot price"
+      },
+      {
+        "symbol": "r",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "q",
+        "meaning": "continuous dividend yield"
+      },
+      {
+        "symbol": "T",
+        "meaning": "time to maturity"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "S",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot price."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "q",
+        "source": "Usually supplied directly in the question or calculated from earlier information: continuous dividend yield."
+      },
+      {
+        "symbol": "T",
+        "source": "Usually supplied directly in the question or calculated from earlier information: time to maturity."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "S = 4000, r = 5%, q = 2%, T = 1",
+        "F = 4000 × (1.05/1.02)¹ = 4000 × 1.0294 = 4117.6"
+      ],
+      "interpretation": "The fair forward price on the index is about 4,117.6, reflecting the net cost of carry (risk-free rate minus dividend yield)."
+    },
+    "trap": "The dividend yield q sits in the denominator alongside (1+r) in the numerator — don't subtract q from r directly unless working with the continuously-compounded version of this formula.",
+    "memoryHook": "Divide by (1+dividend yield) instead of subtracting cash flows.",
+    "questions": [
+      {
+        "id": "forward-price-dividend-yield-q1",
+        "prompt": "S=100, r=6%, q=3%, T=1. Find F.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = 100 × (1.06/1.03) = 100 × 1.0291 = 102.91",
+        "hint": "Apply the ratio of (1+r) to (1+q), raised to the power T.",
+        "solutionSteps": [
+          "F = S × [(1+r)/(1+q)]^T",
+          "= 100 × (1.06/1.03)",
+          "= 102.91"
+        ],
+        "explanation": "A fair forward price of approximately 102.91 on the dividend-paying underlying."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 84,
+    "searchText": "forward price — continuous dividend yield financial markets forward price with dividend yield — index futures pricing standard formula for pricing futures/forwards on dividend-paying stock indices forward price dividend yield stock index futures f = s × [(1 + r) / (1 + q)]^t the dividend yield q sits in the denominator alongside (1+r) in the numerator — don't subtract q from r directly unless working with the continuously-compounded version of this formula. divide by (1+dividend yield) instead of subtracting cash flows."
+  },
+  {
+    "id": "forward-price-storage",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward price — with storage costs",
+    "kind": "formula",
+    "purpose": "Forward price with storage costs — commodities",
+    "realWorld": "Used for physical commodities like oil or grain, which cost money to store until delivery",
+    "keywords": [
+      "forward price",
+      "storage costs",
+      "commodity forwards",
+      "cost of carry"
+    ],
+    "formula": "F₀,ₜ = (S₀ + U) × (1 + r)^T",
+    "plainEnglish": "Storage costs add to the effective cost of carrying the asset, so they're added to spot before compounding.",
+    "notation": [
+      {
+        "symbol": "S₀",
+        "meaning": "spot price"
+      },
+      {
+        "symbol": "U",
+        "meaning": "present value of storage costs"
+      },
+      {
+        "symbol": "r",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "T",
+        "meaning": "time to maturity"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "S₀",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot price."
+      },
+      {
+        "symbol": "U",
+        "source": "Usually supplied directly in the question or calculated from earlier information: present value of storage costs."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "T",
+        "source": "Usually supplied directly in the question or calculated from earlier information: time to maturity."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "S0 = 60, U = 3 (PV of storage), r = 4%, T = 1",
+        "F = (60+3) × 1.04 = 63 × 1.04 = 65.52"
+      ],
+      "interpretation": "The fair forward price is 65.52 — higher than the no-cost case because storage adds to the cost of carry."
+    },
+    "trap": "Storage costs are ADDED (they raise the forward price); income/dividends are SUBTRACTED (they lower it) — the sign matters and is easy to flip under pressure.",
+    "memoryHook": "Storage cost = added expense = higher forward price.",
+    "questions": [
+      {
+        "id": "forward-price-storage-q1",
+        "prompt": "S0=50, U=2, r=5%, T=1. Find F.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = (50+2) × 1.05 = 52 × 1.05 = 54.60",
+        "hint": "Add storage cost to spot, then compound.",
+        "solutionSteps": [
+          "F = (S0+U)(1+r)^T",
+          "= (50+2)(1.05)",
+          "= 54.60"
+        ],
+        "explanation": "A fair forward price of 54.60, reflecting the added cost of physical storage."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 85,
+    "searchText": "forward price — with storage costs financial markets forward price with storage costs — commodities used for physical commodities like oil or grain, which cost money to store until delivery forward price storage costs commodity forwards cost of carry f₀,ₜ = (s₀ + u) × (1 + r)^t storage costs are added (they raise the forward price); income/dividends are subtracted (they lower it) — the sign matters and is easy to flip under pressure. storage cost = added expense = higher forward price."
+  },
+  {
+    "id": "forward-price-lease-rate",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward price — with lease rate",
+    "kind": "formula",
+    "purpose": "Forward price with lease rate — precious metals",
+    "realWorld": "Used for assets like gold or silver that can be leased out for income while held",
+    "keywords": [
+      "forward price",
+      "lease rate",
+      "precious metals forward pricing"
+    ],
+    "formula": "F₀,ₜ = S₀ × [(1 + r) / (1 + δ)]^T",
+    "plainEnglish": "A lease rate (income from lending out the asset) reduces the forward price, similar to a dividend yield.",
+    "notation": [
+      {
+        "symbol": "S₀",
+        "meaning": "spot price"
+      },
+      {
+        "symbol": "r",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "δ",
+        "meaning": "lease rate"
+      },
+      {
+        "symbol": "T",
+        "meaning": "time to maturity"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "S₀",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot price."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "δ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: lease rate."
+      },
+      {
+        "symbol": "T",
+        "source": "Usually supplied directly in the question or calculated from earlier information: time to maturity."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "S0 = 1800, r = 5%, δ = 1%, T = 1",
+        "F = 1800 × (1.05/1.01) = 1800 × 1.0396 = 1871.3"
+      ],
+      "interpretation": "The fair forward price is about 1,871.3 — the lease income partially offsets the financing cost."
+    },
+    "trap": "This formula has the identical structure to the dividend-yield version — just swap 'dividend yield q' for 'lease rate δ'; they play the same mathematical role.",
+    "memoryHook": "Lease rate behaves exactly like a dividend yield.",
+    "questions": [
+      {
+        "id": "forward-price-lease-rate-q1",
+        "prompt": "S0=1000, r=4%, δ=1.5%, T=1. Find F.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = 1000 × (1.04/1.015) = 1000 × 1.0246 = 1024.6",
+        "hint": "Same structure as the dividend-yield formula — substitute δ for q.",
+        "solutionSteps": [
+          "F = S0 × [(1+r)/(1+δ)]^T",
+          "= 1000 × (1.04/1.015)",
+          "= 1024.6"
+        ],
+        "explanation": "A fair forward price of approximately 1,024.6."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 86,
+    "searchText": "forward price — with lease rate financial markets forward price with lease rate — precious metals used for assets like gold or silver that can be leased out for income while held forward price lease rate precious metals forward pricing f₀,ₜ = s₀ × [(1 + r) / (1 + δ)]^t this formula has the identical structure to the dividend-yield version — just swap 'dividend yield q' for 'lease rate δ'; they play the same mathematical role. lease rate behaves exactly like a dividend yield."
+  },
+  {
+    "id": "forward-price-convenience-yield",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward price — with convenience yield",
+    "kind": "formula",
+    "purpose": "Forward price with convenience yield — commodities with scarcity value",
+    "realWorld": "Explains backwardation: when convenience yield is high, near-term physical possession is worth more than the storage cost, pulling futures prices below spot",
+    "keywords": [
+      "forward price",
+      "convenience yield",
+      "backwardation",
+      "commodity scarcity"
+    ],
+    "formula": "F₀,ₜ = (S₀ + U) × [(1 + r) / (1 + Y)]^T",
+    "plainEnglish": "Convenience yield (the benefit of physically holding a commodity) offsets storage costs in the forward price.",
+    "notation": [
+      {
+        "symbol": "S₀",
+        "meaning": "spot price"
+      },
+      {
+        "symbol": "U",
+        "meaning": "PV of storage costs"
+      },
+      {
+        "symbol": "r",
+        "meaning": "risk-free rate"
+      },
+      {
+        "symbol": "Y",
+        "meaning": "convenience yield"
+      },
+      {
+        "symbol": "T",
+        "meaning": "time to maturity"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "S₀",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot price."
+      },
+      {
+        "symbol": "U",
+        "source": "Usually supplied directly in the question or calculated from earlier information: PV of storage costs."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: risk-free rate."
+      },
+      {
+        "symbol": "Y",
+        "source": "Usually supplied directly in the question or calculated from earlier information: convenience yield."
+      },
+      {
+        "symbol": "T",
+        "source": "Usually supplied directly in the question or calculated from earlier information: time to maturity."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "S0=60, U=3, r=5%, Y=8%, T=1",
+        "F = (60+3) × (1.05/1.08) = 63 × 0.9722 = 61.25"
+      ],
+      "interpretation": "Because the convenience yield (8%) exceeds the risk-free rate (5%), the forward price is pulled toward backwardation — barely above spot despite storage costs."
+    },
+    "trap": "This is the one forward-pricing formula that combines BOTH an added cost (storage, U) AND a yield in the denominator (Y) — don't drop either term.",
+    "memoryHook": "Storage adds cost; convenience yield offsets it, sometimes causing backwardation.",
+    "questions": [
+      {
+        "id": "forward-price-convenience-yield-q1",
+        "prompt": "S0=40, U=2, r=4%, Y=10%, T=1. Find F.",
+        "type": "worked",
+        "choices": [],
+        "answer": "F = (40+2) × (1.04/1.10) = 42 × 0.9455 = 39.71",
+        "hint": "Add storage to spot, then multiply by the ratio of (1+r) to (1+Y).",
+        "solutionSteps": [
+          "F = (S0+U) × [(1+r)/(1+Y)]^T",
+          "= 42 × (1.04/1.10)",
+          "= 39.71"
+        ],
+        "explanation": "A forward price of 39.71 — below the spot-plus-storage cost, reflecting a high convenience yield pulling the market into backwardation."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 87,
+    "searchText": "forward price — with convenience yield financial markets forward price with convenience yield — commodities with scarcity value explains backwardation: when convenience yield is high, near-term physical possession is worth more than the storage cost, pulling futures prices below spot forward price convenience yield backwardation commodity scarcity f₀,ₜ = (s₀ + u) × [(1 + r) / (1 + y)]^t this is the one forward-pricing formula that combines both an added cost (storage, u) and a yield in the denominator (y) — don't drop either term. storage adds cost; convenience yield offsets it, sometimes causing backwardation."
+  },
+  {
+    "id": "option-pricing-bounds",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Option pricing bounds",
+    "kind": "concept",
+    "purpose": "Upper and lower price limits that European and American calls/puts must always satisfy, or arbitrage is possible.",
+    "realWorld": "A fast sanity check on any option price before doing full valuation — if a quoted price violates a bound, there's a free-money arbitrage.",
+    "keywords": [
+      "option pricing bounds",
+      "upper bound",
+      "lower bound",
+      "arbitrage-free option price"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "Upper bound, call: c ≤ S₀ (European) and C ≤ S₀ (American) — a call can never be worth more than the stock itself.",
+      "Upper bound, put: p ≤ PV(X) (European) and P ≤ X (American) — a put can never be worth more than its (discounted) strike.",
+      "Lower bound, European call on a non-dividend stock: c ≥ max(S₀ − PV(X), 0).",
+      "Lower bound, European put on a non-dividend stock: p ≥ max(PV(X) − S₀, 0)."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "American option bounds use the strike X directly (not discounted) because early exercise is allowed at any time, including today.",
+    "memoryHook": "Calls bounded above by stock price; puts bounded above by strike.",
+    "questions": [
+      {
+        "id": "option-pricing-bounds-q1",
+        "prompt": "Why can't a European call ever be priced above the current stock price S0?",
+        "type": "concept",
+        "choices": [],
+        "answer": "Because owning the call to buy the stock can never be worth more than just owning the stock outright — if it were priced higher, you could sell the call, buy the stock, and lock in an arbitrage profit.",
+        "hint": "Compare what each instrument lets you do with the underlying stock.",
+        "solutionSteps": [],
+        "explanation": "This is a no-arbitrage bound: if a call ever traded above S0, an arbitrageur could sell the overpriced call and buy the stock for a guaranteed profit, which competitive markets won't allow."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 88,
+    "searchText": "option pricing bounds financial markets upper and lower price limits that european and american calls/puts must always satisfy, or arbitrage is possible. a fast sanity check on any option price before doing full valuation — if a quoted price violates a bound, there's a free-money arbitrage. option pricing bounds upper bound lower bound arbitrage-free option price  american option bounds use the strike x directly (not discounted) because early exercise is allowed at any time, including today. calls bounded above by stock price; puts bounded above by strike."
+  },
+  {
+    "id": "forward-interest-rate",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Forward interest rate",
+    "kind": "formula",
+    "purpose": "Forward interest rate — rate implied by the spot curve",
+    "realWorld": "Used to price forward rate agreements (FRAs) and to interpret the market's expectations for future short-term rates",
+    "keywords": [
+      "forward rate",
+      "spot curve",
+      "forward rate agreement",
+      "implied future rate"
+    ],
+    "formula": "R_forward = (R₂T₂ − R₁T₁) / (T₂ − T₁)",
+    "plainEnglish": "The interest rate implied by today's spot curve for a future period between T1 and T2.",
+    "notation": [
+      {
+        "symbol": "R₁, R₂",
+        "meaning": "spot rates to times T1 and T2"
+      },
+      {
+        "symbol": "T₁, T₂",
+        "meaning": "the two maturity points"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "R₁, R₂",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot rates to times T1 and T2."
+      },
+      {
+        "symbol": "T₁, T₂",
+        "source": "Usually supplied directly in the question or calculated from earlier information: the two maturity points."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "R1 = 3% at T1 = 1yr",
+        "R2 = 4% at T2 = 2yr",
+        "Rf = (4%×2 - 3%×1)/(2-1) = (8-3)/1 = 5%"
+      ],
+      "interpretation": "The market is implicitly pricing a 5% one-year rate for the period from year 1 to year 2."
+    },
+    "trap": "Multiply each spot rate by its OWN maturity before subtracting — a common shortcut error is subtracting R2−R1 directly without weighting by time.",
+    "memoryHook": "Weight each spot rate by its own maturity first.",
+    "questions": [
+      {
+        "id": "forward-interest-rate-q1",
+        "prompt": "R1=2% at T1=1, R2=3.5% at T2=3. Find the forward rate from T1 to T2.",
+        "type": "worked",
+        "choices": [],
+        "answer": "Rf = (3.5%×3 - 2%×1)/(3-1) = (10.5-2)/2 = 4.25%",
+        "hint": "Weight R2 by T2 and R1 by T1 before taking the difference, then divide by (T2-T1).",
+        "solutionSteps": [
+          "Rf = (R2T2 - R1T1)/(T2-T1)",
+          "= (3.5×3 - 2×1)/(3-1)",
+          "= (10.5-2)/2 = 4.25%"
+        ],
+        "explanation": "A forward rate of 4.25% for the period between year 1 and year 3."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 89,
+    "searchText": "forward interest rate financial markets forward interest rate — rate implied by the spot curve used to price forward rate agreements (fras) and to interpret the market's expectations for future short-term rates forward rate spot curve forward rate agreement implied future rate r_forward = (r₂t₂ − r₁t₁) / (t₂ − t₁) multiply each spot rate by its own maturity before subtracting — a common shortcut error is subtracting r2−r1 directly without weighting by time. weight each spot rate by its own maturity first."
+  },
+  {
+    "id": "currency-swap-value",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Financial Markets",
+    "name": "Currency swap value",
+    "kind": "formula",
+    "purpose": "Currency swap value — two bonds in different currencies",
+    "realWorld": "Used to mark-to-market a cross-currency swap and assess counterparty credit exposure",
+    "keywords": [
+      "currency swap",
+      "cross-currency swap valuation",
+      "swap as two bonds"
+    ],
+    "formula": "V_swap(YYY) = B_YYY − (S₀ × B_XXX)",
+    "plainEnglish": "The value of a currency swap is the difference between the two bond legs, converted to a common currency.",
+    "notation": [
+      {
+        "symbol": "B_YYY",
+        "meaning": "value of the bond representing the YYY-currency leg"
+      },
+      {
+        "symbol": "B_XXX",
+        "meaning": "value of the bond representing the XXX-currency leg"
+      },
+      {
+        "symbol": "S₀",
+        "meaning": "spot rate, YYY per unit of XXX"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "B_YYY",
+        "source": "Usually supplied directly in the question or calculated from earlier information: value of the bond representing the YYY-currency leg."
+      },
+      {
+        "symbol": "B_XXX",
+        "source": "Usually supplied directly in the question or calculated from earlier information: value of the bond representing the XXX-currency leg."
+      },
+      {
+        "symbol": "S₀",
+        "source": "Usually supplied directly in the question or calculated from earlier information: spot rate, YYY per unit of XXX."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "B_YYY = 1,050,000",
+        "B_XXX = 900,000, S0 = 1.10 YYY per XXX",
+        "V = 1,050,000 - (1.10 × 900,000) = 1,050,000 - 990,000 = 60,000"
+      ],
+      "interpretation": "The swap is worth 60,000 (in YYY currency) to the party receiving the YYY leg."
+    },
+    "trap": "Convert the XXX-currency bond value into YYY terms using the spot rate BEFORE subtracting — mixing currencies without converting is the most common error here.",
+    "memoryHook": "Think of a currency swap as two bonds; value = difference after converting to one currency.",
+    "questions": [
+      {
+        "id": "currency-swap-value-q1",
+        "prompt": "B_YYY=500,000, B_XXX=300,000, S0=1.5 YYY per XXX. Find V_swap(YYY).",
+        "type": "worked",
+        "choices": [],
+        "answer": "V = 500,000 - (1.5 × 300,000) = 500,000 - 450,000 = 50,000",
+        "hint": "Convert B_XXX to YYY terms using the spot rate, then subtract from B_YYY.",
+        "solutionSteps": [
+          "V = B_YYY - (S0 × B_XXX)",
+          "= 500,000 - (1.5 × 300,000)",
+          "= 50,000"
+        ],
+        "explanation": "The swap is worth 50,000 in YYY currency to the party receiving that leg."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 90,
+    "searchText": "currency swap value financial markets currency swap value — two bonds in different currencies used to mark-to-market a cross-currency swap and assess counterparty credit exposure currency swap cross-currency swap valuation swap as two bonds v_swap(yyy) = b_yyy − (s₀ × b_xxx) convert the xxx-currency bond value into yyy terms using the spot rate before subtracting — mixing currencies without converting is the most common error here. think of a currency swap as two bonds; value = difference after converting to one currency."
+  },
+  {
+    "id": "expected-shortfall",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Expected Shortfall (ES)",
+    "kind": "formula",
+    "purpose": "Expected Shortfall — average loss beyond VaR",
+    "realWorld": "Preferred over VaR by regulators (e.g., FRTB) because ES is a coherent risk measure that satisfies subadditivity",
+    "keywords": [
+      "expected shortfall",
+      "ES",
+      "coherent risk measure",
+      "subadditivity",
+      "tail risk beyond VaR"
+    ],
+    "formula": "ES = μ + σ × e^(−z²/2) / [(1−x)√(2π)]",
+    "plainEnglish": "The average loss in the worst (1−x)% of outcomes — the expected value of losses beyond VaR.",
+    "notation": [
+      {
+        "symbol": "μ, σ",
+        "meaning": "mean and standard deviation of returns"
+      },
+      {
+        "symbol": "z",
+        "meaning": "the z-value at the VaR confidence level"
+      },
+      {
+        "symbol": "x",
+        "meaning": "the confidence level (e.g., 0.95)"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "μ, σ",
+        "source": "Usually supplied directly in the question or calculated from earlier information: mean and standard deviation of returns."
+      },
+      {
+        "symbol": "z",
+        "source": "Usually supplied directly in the question or calculated from earlier information: the z-value at the VaR confidence level."
+      },
+      {
+        "symbol": "x",
+        "source": "Usually supplied directly in the question or calculated from earlier information: the confidence level (e.g., 0.95)."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "μ = 0, σ = 0.02, x = 0.95, z = 1.65",
+        "e^(-1.65²/2) = e^(-1.36) = 0.2567",
+        "ES = 0 + 0.02 × 0.2567 / [(0.05)(2.5066)] = 0.02 × 0.2567/0.1253 = 0.041"
+      ],
+      "interpretation": "Expected shortfall of about 4.1% — the average loss in the worst 5% of outcomes, always larger than VaR at the same confidence level."
+    },
+    "trap": "ES is always ≥ VaR at the same confidence level, since it's averaging losses INSIDE the tail that VaR only marks the boundary of.",
+    "memoryHook": "ES = average of the losses VaR only points at.",
+    "questions": [
+      {
+        "id": "expected-shortfall-q1",
+        "prompt": "Why does Expected Shortfall satisfy subadditivity while VaR does not?",
+        "type": "worked",
+        "choices": [],
+        "answer": "Because ES averages all losses in the tail rather than just identifying a single cutoff point, it correctly reflects that diversification cannot increase total risk — VaR can violate this in some cases.",
+        "hint": "Think about what 'coherent risk measure' requires: a portfolio's risk should never exceed the sum of its parts' risks.",
+        "solutionSteps": [],
+        "explanation": "ES is a coherent risk measure (satisfies subadditivity); VaR is not, which is a key reason regulators have shifted toward ES-based capital frameworks."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 91,
+    "searchText": "expected shortfall (es) valuation & risk models expected shortfall — average loss beyond var preferred over var by regulators (e.g., frtb) because es is a coherent risk measure that satisfies subadditivity expected shortfall es coherent risk measure subadditivity tail risk beyond var es = μ + σ × e^(−z²/2) / [(1−x)√(2π)] es is always ≥ var at the same confidence level, since it's averaging losses inside the tail that var only marks the boundary of. es = average of the losses var only points at."
+  },
+  {
+    "id": "continuous-compounding",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Continuous compounding",
+    "kind": "formula",
+    "purpose": "Continuous compounding — the compounding-frequency limit",
+    "realWorld": "The standard convention for discounting cash flows and pricing derivatives in most quantitative finance models",
+    "keywords": [
+      "continuous compounding",
+      "e^(rn)",
+      "compounding frequency limit"
+    ],
+    "formula": "FVₙ = PV₀ × e^(r×n)",
+    "plainEnglish": "The limit of compounding as the number of compounding periods per year goes to infinity.",
+    "notation": [
+      {
+        "symbol": "PV₀",
+        "meaning": "present value"
+      },
+      {
+        "symbol": "r",
+        "meaning": "annual rate"
+      },
+      {
+        "symbol": "n",
+        "meaning": "number of years"
+      },
+      {
+        "symbol": "e",
+        "meaning": "Euler's number, ≈2.71828"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "PV₀",
+        "source": "Usually supplied directly in the question or calculated from earlier information: present value."
+      },
+      {
+        "symbol": "r",
+        "source": "Usually supplied directly in the question or calculated from earlier information: annual rate."
+      },
+      {
+        "symbol": "n",
+        "source": "Usually supplied directly in the question or calculated from earlier information: number of years."
+      },
+      {
+        "symbol": "e",
+        "source": "Usually supplied directly in the question or calculated from earlier information: Euler's number, ≈2.71828."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "PV = 1000, r = 5%, n = 3",
+        "FV = 1000 × e^(0.05×3) = 1000 × e^0.15 = 1000 × 1.1618 = 1161.8"
+      ],
+      "interpretation": "A future value of 1,161.8 after 3 years of continuous compounding at 5%."
+    },
+    "trap": "Continuous compounding always gives a slightly HIGHER future value than any finite compounding frequency (annual, semiannual, etc.) at the same stated rate — it's the upper limit.",
+    "memoryHook": "Infinite compounding frequency = eʳⁿ.",
+    "questions": [
+      {
+        "id": "continuous-compounding-q1",
+        "prompt": "PV=500, r=4%, n=2. Find FV under continuous compounding.",
+        "type": "worked",
+        "choices": [],
+        "answer": "FV = 500 × e^(0.04×2) = 500 × e^0.08 = 500 × 1.0833 = 541.6",
+        "hint": "Plug r and n into the exponent of e.",
+        "solutionSteps": [
+          "FV = PV × e^(rn)",
+          "= 500 × e^(0.08)",
+          "= 500 × 1.0833 = 541.6"
+        ],
+        "explanation": "A future value of approximately 541.6 after 2 years of continuous compounding."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 92,
+    "searchText": "continuous compounding valuation & risk models continuous compounding — the compounding-frequency limit the standard convention for discounting cash flows and pricing derivatives in most quantitative finance models continuous compounding e^(rn) compounding frequency limit fvₙ = pv₀ × e^(r×n) continuous compounding always gives a slightly higher future value than any finite compounding frequency (annual, semiannual, etc.) at the same stated rate — it's the upper limit. infinite compounding frequency = eʳⁿ."
+  },
+  {
+    "id": "unexpected-loss",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Unexpected Loss (UL)",
+    "kind": "concept",
+    "purpose": "The variability of potential credit losses around the expected loss, modeled like a standard deviation.",
+    "realWorld": "The basis for setting economic capital: capital should cover unexpected loss, since expected loss should already be priced into margins/reserves.",
+    "keywords": [
+      "unexpected loss",
+      "UL",
+      "economic capital",
+      "expected loss vs unexpected loss"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "Expected Loss (EL) is a cost of doing business — it should be covered by pricing (spreads) and loan-loss reserves, not capital.",
+      "Unexpected Loss (UL) is the *volatility* of losses around EL — this is what capital is meant to absorb, since it represents the risk that actual losses exceed the expected amount.",
+      "UL can be modeled using the standard-deviation-style logic applied to the loss distribution, capturing how much realized losses could plausibly deviate from EL."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "Don't confuse EL (a single expected number, covered by pricing/reserves) with UL (a measure of dispersion, covered by capital) — they serve entirely different risk-management purposes.",
+    "memoryHook": "EL = priced into the loan. UL = covered by capital.",
+    "questions": [
+      {
+        "id": "unexpected-loss-q1",
+        "prompt": "Why does a bank hold capital against Unexpected Loss rather than Expected Loss?",
+        "type": "concept",
+        "choices": [],
+        "answer": "Because Expected Loss is a predictable cost that should already be covered by loan pricing and reserves — capital exists specifically to absorb the *variability* around that expectation, which is Unexpected Loss.",
+        "hint": "Think about what each concept is meant to protect against: a known average cost, versus the risk of deviating from it.",
+        "solutionSteps": [],
+        "explanation": "Capital is sized to cover Unexpected Loss because Expected Loss is already accounted for through pricing and reserves — conflating the two would double-count or under-capitalize the bank."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 93,
+    "searchText": "unexpected loss (ul) valuation & risk models the variability of potential credit losses around the expected loss, modeled like a standard deviation. the basis for setting economic capital: capital should cover unexpected loss, since expected loss should already be priced into margins/reserves. unexpected loss ul economic capital expected loss vs unexpected loss  don't confuse el (a single expected number, covered by pricing/reserves) with ul (a measure of dispersion, covered by capital) — they serve entirely different risk-management purposes. el = priced into the loan. ul = covered by capital."
+  },
+  {
+    "id": "clean-dirty-bond-price",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Clean vs. dirty bond price",
+    "kind": "formula",
+    "purpose": "Clean vs. dirty price — accrued interest at settlement",
+    "realWorld": "Determines the actual cash amount exchanged when a bond trade settles between coupon dates",
+    "keywords": [
+      "clean price",
+      "dirty price",
+      "accrued interest",
+      "bond settlement"
+    ],
+    "formula": "Dirty price = Clean price + AI,   AI = coupon × (days since last coupon / days in coupon period)",
+    "plainEnglish": "The buyer of a bond must pay the seller for interest accrued since the last coupon — that's the difference between clean and dirty price.",
+    "notation": [
+      {
+        "symbol": "AI",
+        "meaning": "accrued interest"
+      },
+      {
+        "symbol": "Clean price",
+        "meaning": "quoted bond price excluding accrued interest"
+      },
+      {
+        "symbol": "Dirty price",
+        "meaning": "actual price paid, including accrued interest"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "AI",
+        "source": "Usually supplied directly in the question or calculated from earlier information: accrued interest."
+      },
+      {
+        "symbol": "Clean price",
+        "source": "Usually supplied directly in the question or calculated from earlier information: quoted bond price excluding accrued interest."
+      },
+      {
+        "symbol": "Dirty price",
+        "source": "Usually supplied directly in the question or calculated from earlier information: actual price paid, including accrued interest."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Coupon = 40 (semiannual)",
+        "60 days since last coupon, 180 days in the period",
+        "AI = 40 × (60/180) = 13.33",
+        "Dirty price = Clean price + 13.33"
+      ],
+      "interpretation": "The buyer pays 13.33 of accrued interest on top of the quoted clean price to compensate the seller for interest earned since the last coupon."
+    },
+    "trap": "Quoted bond prices in the market are almost always CLEAN prices — don't forget to add AI when calculating the actual cash settlement amount.",
+    "memoryHook": "Dirty = Clean + Accrued Interest (what the seller is owed).",
+    "questions": [
+      {
+        "id": "clean-dirty-bond-price-q1",
+        "prompt": "Coupon=50 (semiannual), 30 days since last coupon out of a 180-day period. Find AI.",
+        "type": "worked",
+        "choices": [],
+        "answer": "AI = 50 × (30/180) = 8.33",
+        "hint": "Multiply the coupon by the fraction of the coupon period that has elapsed.",
+        "solutionSteps": [
+          "AI = coupon × (days elapsed/days in period)",
+          "= 50 × (30/180)",
+          "= 8.33"
+        ],
+        "explanation": "8.33 of accrued interest must be added to the clean price to get the dirty (settlement) price."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 94,
+    "searchText": "clean vs. dirty bond price valuation & risk models clean vs. dirty price — accrued interest at settlement determines the actual cash amount exchanged when a bond trade settles between coupon dates clean price dirty price accrued interest bond settlement dirty price = clean price + ai,   ai = coupon × (days since last coupon / days in coupon period) quoted bond prices in the market are almost always clean prices — don't forget to add ai when calculating the actual cash settlement amount. dirty = clean + accrued interest (what the seller is owed)."
+  },
+  {
+    "id": "delta-neutral-hedge-ratio",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Delta-neutral hedge ratio",
+    "kind": "formula",
+    "purpose": "Delta-neutral hedging — offsetting a short option position with shares",
+    "realWorld": "Used by market makers and options desks to remain hedged against small moves in the underlying",
+    "keywords": [
+      "delta-neutral",
+      "delta hedging",
+      "short call hedge",
+      "covered call construction"
+    ],
+    "formula": "Shares to buy = Delta × number of options sold",
+    "plainEnglish": "To hedge a short option position, hold enough shares of the underlying to offset the option's price sensitivity.",
+    "notation": [
+      {
+        "symbol": "Delta",
+        "meaning": "the option's delta (sensitivity to a $1 move in the underlying)"
+      },
+      {
+        "symbol": "number of options sold",
+        "meaning": "size of the short option position being hedged"
+      }
+    ],
+    "whyItWorks": [
+      "Start from the financial quantity the question is asking you to measure.",
+      "Match each item supplied in the question to the notation shown below.",
+      "Substitute values only after checking units, signs, time periods, and whether rates are decimals or percentages.",
+      "Calculate in small steps and then interpret the result in financial terms."
+    ],
+    "inputOrigins": [
+      {
+        "symbol": "Delta",
+        "source": "Usually supplied directly in the question or calculated from earlier information: the option's delta (sensitivity to a $1 move in the underlying)."
+      },
+      {
+        "symbol": "number of options sold",
+        "source": "Usually supplied directly in the question or calculated from earlier information: size of the short option position being hedged."
+      }
+    ],
+    "workedExample": {
+      "steps": [
+        "Delta = 0.60",
+        "Options sold = 1,000 contracts (100 shares each = 100,000 option-shares)",
+        "Shares to buy = 0.60 × 100,000 = 60,000 shares"
+      ],
+      "interpretation": "Buying 60,000 shares offsets the delta exposure from the short 1,000-contract call position, at least for small underlying price moves."
+    },
+    "trap": "Delta hedges only protect against SMALL moves in the underlying — large moves require rebalancing (gamma risk), since delta itself changes as the stock price moves.",
+    "memoryHook": "Shares needed = delta × options sold.",
+    "questions": [
+      {
+        "id": "delta-neutral-hedge-ratio-q1",
+        "prompt": "Delta=0.4, short 500 contracts (100 shares/contract = 50,000 option-shares). How many shares to buy?",
+        "type": "worked",
+        "choices": [],
+        "answer": "Shares = 0.4 × 50,000 = 20,000",
+        "hint": "Multiply delta by the total option-share exposure.",
+        "solutionSteps": [
+          "Shares = Delta × options sold",
+          "= 0.4 × 50,000",
+          "= 20,000"
+        ],
+        "explanation": "20,000 shares are needed to delta-hedge the short call position."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 95,
+    "searchText": "delta-neutral hedge ratio valuation & risk models delta-neutral hedging — offsetting a short option position with shares used by market makers and options desks to remain hedged against small moves in the underlying delta-neutral delta hedging short call hedge covered call construction shares to buy = delta × number of options sold delta hedges only protect against small moves in the underlying — large moves require rebalancing (gamma risk), since delta itself changes as the stock price moves. shares needed = delta × options sold."
+  },
+  {
+    "id": "delta-hedging-limits",
+    "book": "FRM Part I QuickSheet",
+    "topic": "Valuation & Risk Models",
+    "name": "Delta hedging: gamma and rebalancing",
+    "kind": "concept",
+    "purpose": "Why a delta-neutral hedge needs constant rebalancing, and how gamma helps manage that.",
+    "realWorld": "Central to how options market makers actually manage risk day to day, not just in theory.",
+    "keywords": [
+      "gamma",
+      "delta rebalancing",
+      "gamma-neutral",
+      "hedging error correction"
+    ],
+    "formula": "",
+    "plainEnglish": "",
+    "notation": [],
+    "whyItWorks": [
+      "Delta hedging is only exact for infinitesimally small changes in the underlying's price — it's a linear approximation to a curved (convex) relationship.",
+      "As the underlying moves, delta itself changes — this rate of change is gamma, and it's what causes a delta-neutral hedge to drift out of balance.",
+      "A gamma-neutral position is built by matching portfolio gamma with an offsetting option position, protecting against larger price swings that a pure delta hedge would miss."
+    ],
+    "inputOrigins": [],
+    "workedExample": {
+      "steps": [],
+      "interpretation": ""
+    },
+    "trap": "Gamma is largest for at-the-money options — this is exactly where delta hedges need the most frequent rebalancing.",
+    "memoryHook": "Delta hedges small moves; gamma protects against delta itself changing.",
+    "questions": [
+      {
+        "id": "delta-hedging-limits-q1",
+        "prompt": "Why isn't a delta-neutral hedge set once and left alone?",
+        "type": "concept",
+        "choices": [],
+        "answer": "Because delta changes as the underlying price moves (that rate of change is gamma) — the hedge ratio calculated at one price is no longer correct once the price moves, requiring rebalancing.",
+        "hint": "Consider that delta is a first derivative (slope) of a curved payoff — slopes change as you move along a curve.",
+        "solutionSteps": [],
+        "explanation": "Delta hedging requires ongoing rebalancing because gamma (the option's convexity) means delta itself shifts as the underlying price moves."
+      }
+    ],
+    "reviewStatus": "draft",
+    "order": 96,
+    "searchText": "delta hedging: gamma and rebalancing valuation & risk models why a delta-neutral hedge needs constant rebalancing, and how gamma helps manage that. central to how options market makers actually manage risk day to day, not just in theory. gamma delta rebalancing gamma-neutral hedging error correction  gamma is largest for at-the-money options — this is exactly where delta hedges need the most frequent rebalancing. delta hedges small moves; gamma protects against delta itself changing."
   }
 ]

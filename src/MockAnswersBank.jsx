@@ -3,21 +3,81 @@ import { useEffect, useState } from "react";
 // Dev-only, local-only: reads the private, gitignored study-data repo that
 // lives outside this project (never bundled into `vite build`, so it can
 // never reach the public GitHub Pages deploy -- see vite.config.js).
-const PRIVATE_DATA_URL = "/@fs/C:/Meridian/frm-mock-answers-private/mock_answers_2026.json";
+const DATA_URL = "/@fs/C:/Meridian/frm-mock-answers-private/mock_answers_2026_v2.json";
+const ANSWER_KEY_URL = "/@fs/C:/Meridian/frm-mock-answers-private/answer_key_progress.json";
+
+function QuizQuestion({ q, verifiedAnswer }) {
+  const [selected, setSelected] = useState(null);
+  const letters = Object.keys(q.choices);
+  const known = Boolean(verifiedAnswer);
+
+  return (
+    <div style={{ marginBottom: 20, paddingBottom: 20, borderBottom: "1px solid var(--border-soft)" }}>
+      <p style={{ marginBottom: 12 }}>
+        <strong>Q{q.question_number}.</strong> {q.stem}
+      </p>
+      <div>
+        {letters.map((letter) => {
+          const isSelected = selected === letter;
+          const isCorrectLetter = known && verifiedAnswer === letter;
+          let cls = "quiz-choice";
+          if (selected) {
+            if (known && isCorrectLetter) cls += " correct";
+            else if (isSelected && known && !isCorrectLetter) cls += " incorrect";
+            else if (!isSelected) cls += " dim";
+          }
+          return (
+            <button
+              key={letter}
+              type="button"
+              className={cls}
+              disabled={Boolean(selected)}
+              onClick={() => setSelected(letter)}
+            >
+              <span className="letter">{letter}</span>
+              <span>{q.choices[letter]}</span>
+            </button>
+          );
+        })}
+      </div>
+      {selected && (
+        <div className="quiz-explanation">
+          {known ? (
+            <p className={`quiz-verdict ${selected === verifiedAnswer ? "correct" : "incorrect"}`}>
+              {selected === verifiedAnswer ? "Correct" : `Incorrect — correct answer is ${verifiedAnswer}`}
+            </p>
+          ) : (
+            <p className="quiz-verdict unknown">Not yet verified — read the explanation to judge for yourself</p>
+          )}
+          <p style={{ margin: 0 }}>{q.explanation}</p>
+          <small className="muted">Book {q.book}, Module {q.module}, LO {q.lo}</small>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function MockAnswersBank() {
   const [readings, setReadings] = useState(null);
+  const [answerKey, setAnswerKey] = useState({});
   const [error, setError] = useState(null);
   const [openReading, setOpenReading] = useState(null);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    fetch(PRIVATE_DATA_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
+    Promise.all([
+      fetch(DATA_URL).then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      }),
+      fetch(ANSWER_KEY_URL)
+        .then((r) => (r.ok ? r.json() : {}))
+        .catch(() => ({})),
+    ])
+      .then(([data, key]) => {
+        setReadings(data);
+        setAnswerKey(key);
       })
-      .then(setReadings)
       .catch((err) => setError(err.message));
   }, []);
 
@@ -44,6 +104,7 @@ export function MockAnswersBank() {
     );
   }
 
+  const verifiedCount = Object.keys(answerKey).length;
   const needle = query.trim().toLowerCase();
   const filtered = needle
     ? readings.filter((r) => r.reading.toLowerCase().includes(needle))
@@ -55,14 +116,15 @@ export function MockAnswersBank() {
         <span className="eyebrow">Mock answers (local only, not in the public build)</span>
         <h2>{readings.reduce((sum, r) => sum + r.questions.length, 0)} questions across {readings.length} readings</h2>
         <p className="muted">
-          Source: private study data, never committed to this (public) repo or deployed.
+          {verifiedCount} verified with confirmed correct answers (reading-comprehension checked, not guessed).
+          The rest show the explanation only, unlabeled, until verified.
         </p>
       </div>
       <input
         placeholder="Filter by reading name..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        style={{ marginBottom: 12, width: "100%", padding: "8px 10px" }}
+        style={{ marginBottom: 12, width: "100%" }}
       />
       <div className="bank-list">
         {filtered.map((r) => (
@@ -74,13 +136,9 @@ export function MockAnswersBank() {
               </span>
             </button>
             {openReading === r.reading && (
-              <div style={{ padding: "8px 12px 16px" }}>
+              <div style={{ padding: "12px 4px 4px" }}>
                 {r.questions.map((q) => (
-                  <div key={q.question_id} style={{ marginBottom: 16, paddingBottom: 16, borderBottom: "1px solid #eee" }}>
-                    <p><strong>Q{q.question_number}.</strong> {q.body}</p>
-                    <p className="muted"><em>Explanation:</em> {q.explanation}</p>
-                    <small className="muted">Book {q.book}, Module {q.module}, LO {q.lo}</small>
-                  </div>
+                  <QuizQuestion key={q.question_id} q={q} verifiedAnswer={answerKey[q.question_id]} />
                 ))}
               </div>
             )}

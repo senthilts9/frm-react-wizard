@@ -4,6 +4,6 @@
   "description": "FRM Part I concept-first study wizard and expandable practice bank.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f5f7fb",
-  "theme_color": "#155eef"
+  "background_color": "#0a0d14",
+  "theme_color": "#0a0d14"
 }
