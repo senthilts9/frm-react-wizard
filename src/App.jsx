@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import modules from "./data/modules.json";
+import { MockAnswersBank } from "./MockAnswersBank.jsx";
 
 const MEMORY_LEVELS = ["New", "Learning", "Remembered", "Mastered"];
 const STEP_LABELS = ["Concept", "Triggers", "Why it works", "Notation & inputs", "Worked example", "Practice"];
@@ -515,6 +516,7 @@ export default function App() {
             ["learn", "Learn"],
             ["bank", "Question bank"],
             ["mock", "Mock exam"],
+            ...(import.meta.env.DEV ? [["answers", "Mock Answers (dev)"]] : []),
           ].map(([id, label]) => (
             <button key={id} type="button" className={view === id ? "active" : ""} onClick={() => setView(id)}>
               {label}
@@ -629,6 +631,8 @@ export default function App() {
               setQuestionStats={setQuestionStats}
             />
           )}
+
+          {view === "answers" && import.meta.env.DEV && <MockAnswersBank />}
         </main>
       </div>
 

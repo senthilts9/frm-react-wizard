@@ -3,3 +3,8 @@ dist/
 .env
 .env.*
 .DS_Store
+
+# Copyrighted third-party commercial exam-prep material -- never public.
+# See ../frm-mock-answers-private for the extracted, gitignored-here data.
+Mock FRM - I/
+extract_mock_answers.py
