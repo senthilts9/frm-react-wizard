@@ -1,0 +1,9 @@
+{
+  "name": "Senthil's FRM Q&A",
+  "short_name": "FRM Q&A",
+  "description": "FRM Part I concept-first study wizard and expandable practice bank.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#155eef"
+}
