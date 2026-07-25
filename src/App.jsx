@@ -3,7 +3,7 @@ import modules from "./data/modules.json";
 import { MockAnswersBank } from "./MockAnswersBank.jsx";
 
 const MEMORY_LEVELS = ["New", "Learning", "Remembered", "Mastered"];
-const STEP_LABELS = ["Concept", "Triggers", "Why", "Formula", "Example", "Practice"];
+const STEP_LABELS = ["Concept", "Formula", "Example", "Practice"];
 
 function usePersistentState(key, initialValue) {
   const [value, setValue] = useState(() => {
@@ -109,6 +109,14 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
     setShowSolution(true);
   }
 
+  function changeQuestion(delta) {
+    setQuestionIndex((value) => Math.min(Math.max(value + delta, 0), module.questions.length - 1));
+    setShowHint(false);
+    setShowSolution(false);
+    setSelectedChoice("");
+    setWorking("");
+  }
+
   function promote() {
     const current = memory[module.id] || "New";
     const nextIndex = Math.min(MEMORY_LEVELS.indexOf(current) + 1, MEMORY_LEVELS.length - 1);
@@ -159,117 +167,89 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
               <h3>Plain-English idea</h3>
               <p>{module.plainEnglish}</p>
             </article>
+            <article>
+              <h3>Exam keywords that trigger this module</h3>
+              <div className="keyword-grid">
+                {module.keywords.map((word) => <Pill key={word} tone="accent">{word}</Pill>)}
+              </div>
+              <p className="decision-rule">
+                Don't pick a formula just because one familiar word appears — match the requested output,
+                the supplied inputs, and the financial setting.
+              </p>
+            </article>
           </div>
         )}
 
         {step === 1 && (
           <div className="section-stack">
             <article>
-              <h3>Exam keywords that should trigger this module</h3>
-              <div className="keyword-grid">
-                {module.keywords.map((word) => <Pill key={word} tone="accent">{word}</Pill>)}
+              <h3>Formula</h3>
+              <pre className="formula-box">{module.formula}</pre>
+            </article>
+
+            <div className="formula-columns">
+              {module.notation.length > 0 && (
+                <article>
+                  <h3>Every notation</h3>
+                  <div className="table-wrap">
+                    <table>
+                      <thead>
+                        <tr><th>Symbol</th><th>Meaning</th></tr>
+                      </thead>
+                      <tbody>
+                        {module.notation.map((row) => (
+                          <tr key={`${module.id}-${row.symbol}`}>
+                            <td><strong>{row.symbol}</strong></td>
+                            <td>{row.meaning}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
+              )}
+
+              <div className="formula-side-stack">
+                <article className="warning-box compact">
+                  <span className="section-kicker">Common FRM trap</span>
+                  <p>{module.trap}</p>
+                </article>
+                <article className="memory-box compact">
+                  <span className="section-kicker">Memory hook</span>
+                  <strong>{module.memoryHook}</strong>
+                </article>
               </div>
-            </article>
-            <article className="callout">
-              <span className="section-kicker">Decision rule</span>
-              <p>
-                Do not select a formula only because one familiar word appears. Match the requested output,
-                the supplied inputs, units, and the financial setting.
-              </p>
-            </article>
+            </div>
           </div>
         )}
 
         {step === 2 && (
           <div className="section-stack">
-            <article>
-              <h3>Why the method works</h3>
-              <ol className="numbered-steps">
-                {module.whyItWorks.map((item, index) => (
-                  <li key={`${module.id}-why-${index}`}>
-                    <span>{index + 1}</span>
-                    <p>{item}</p>
-                  </li>
-                ))}
-              </ol>
-            </article>
-            <article className="memory-box">
-              <span className="section-kicker">Memory hook</span>
-              <strong>{module.memoryHook}</strong>
-            </article>
-          </div>
-        )}
-
-        {step === 3 && (
-          <div className="section-stack">
-            <article>
-              <h3>Formula</h3>
-              <pre className="formula-box">{module.formula}</pre>
-            </article>
-
-            {module.notation.length > 0 && (
-              <article>
-                <h3>Every notation</h3>
-                <div className="table-wrap">
-                  <table>
-                    <thead>
-                      <tr><th>Symbol</th><th>Meaning</th></tr>
-                    </thead>
-                    <tbody>
-                      {module.notation.map((row) => (
-                        <tr key={`${module.id}-${row.symbol}`}>
-                          <td><strong>{row.symbol}</strong></td>
-                          <td>{row.meaning}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </article>
-            )}
-
-            {module.inputOrigins.length > 0 && (
-              <article>
-                <h3>Where each value comes from</h3>
-                <div className="input-origin-list">
-                  {module.inputOrigins.map((row) => (
-                    <div key={`${module.id}-origin-${row.symbol}`}>
-                      <strong>{row.symbol}</strong>
-                      <p>{row.source}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
-            )}
-
-            <article className="warning-box">
-              <span className="section-kicker">Common FRM trap</span>
-              <p>{module.trap}</p>
-            </article>
-          </div>
-        )}
-
-        {step === 4 && (
-          <div className="section-stack">
-            <article>
-              <h3>Step-by-step worked example</h3>
-              <ol className="numbered-steps">
-                {module.workedExample.steps.map((item, index) => (
-                  <li key={`${module.id}-example-${index}`}>
-                    <span>{index + 1}</span>
-                    <p>{item}</p>
-                  </li>
-                ))}
-              </ol>
-            </article>
             <article className="callout">
+              <span className="section-kicker">Given</span>
+              <p>{module.workedExample.steps[0]}</p>
+            </article>
+            {module.workedExample.steps.length > 1 && (
+              <article>
+                <h3>Step-by-step solution</h3>
+                <ol className="numbered-steps">
+                  {module.workedExample.steps.slice(1).map((item, index) => (
+                    <li key={`${module.id}-example-${index}`}>
+                      <span>{index + 1}</span>
+                      <p>{item}</p>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            )}
+            <article className="memory-box">
               <span className="section-kicker">Interpretation</span>
               <p>{module.workedExample.interpretation}</p>
             </article>
           </div>
         )}
 
-        {step === 5 && question && (
+        {step === 3 && question && (
           <div className="section-stack">
             <article className="question-card">
               <div className="question-meta">
@@ -309,7 +289,7 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
                 <button type="button" className="secondary" onClick={() => setShowHint((value) => !value)}>
                   {showHint ? "Hide hint" : "Hint"}
                 </button>
-                <button type="button" className="primary" onClick={revealSolution}>Show solution</button>
+                <button type="button" className="primary solution-btn" onClick={revealSolution}>Show solution</button>
               </div>
 
               {showHint && <div className="hint-box"><strong>Hint:</strong> {question.hint}</div>}
@@ -329,65 +309,47 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
                   <p><strong>Meaning:</strong> {question.explanation}</p>
                 </div>
               )}
-
-              <div className="question-nav">
-                <button
-                  type="button"
-                  className="secondary"
-                  disabled={questionIndex === 0}
-                  onClick={() => {
-                    setQuestionIndex((value) => value - 1);
-                    setShowHint(false);
-                    setShowSolution(false);
-                    setSelectedChoice("");
-                    setWorking("");
-                  }}
-                >
-                  ← Prev
-                </button>
-                <button
-                  type="button"
-                  className="secondary"
-                  disabled={questionIndex >= module.questions.length - 1}
-                  onClick={() => {
-                    setQuestionIndex((value) => value + 1);
-                    setShowHint(false);
-                    setShowSolution(false);
-                    setSelectedChoice("");
-                    setWorking("");
-                  }}
-                >
-                  Next →
-                </button>
-              </div>
-            </article>
-
-            <article className="memory-actions">
-              <div>
-                <span className="section-kicker">After attempting</span>
-                <p>Promote only when you can identify the trigger and reproduce the method without looking.</p>
-              </div>
-              <div className="button-row">
-                <button type="button" className="secondary" onClick={() => setMemory((prev) => ({ ...prev, [module.id]: "Learning" }))}>
-                  Need review
-                </button>
-                <button type="button" className="primary" onClick={promote}>
-                  I remembered — promote
-                </button>
-              </div>
             </article>
           </div>
         )}
       </div>
 
+      {step === 3 && question && (
+        <article className="memory-actions">
+          <span>How did that go?</span>
+          <div className="button-row">
+            <button type="button" className="secondary" onClick={() => setMemory((prev) => ({ ...prev, [module.id]: "Learning" }))}>
+              Need review
+            </button>
+            <button type="button" className="primary" onClick={promote}>
+              Got it
+            </button>
+          </div>
+        </article>
+      )}
+
       <footer className="lesson-footer">
-        <button type="button" className="secondary" disabled={step === 0} onClick={() => setStep((value) => Math.max(0, value - 1))}>
-          ← Previous step
-        </button>
-        <span>Step {step + 1} of {STEP_LABELS.length}</span>
-        <button type="button" className="primary" disabled={step === STEP_LABELS.length - 1} onClick={() => setStep((value) => Math.min(STEP_LABELS.length - 1, value + 1))}>
-          Next step →
-        </button>
+        {step === STEP_LABELS.length - 1 && question ? (
+          <>
+            <button type="button" className="secondary" disabled={questionIndex === 0} onClick={() => changeQuestion(-1)}>
+              ← Prev question
+            </button>
+            <span>Question {questionIndex + 1} of {module.questions.length}</span>
+            <button type="button" className="primary" disabled={questionIndex >= module.questions.length - 1} onClick={() => changeQuestion(1)}>
+              Next question →
+            </button>
+          </>
+        ) : (
+          <>
+            <button type="button" className="secondary" disabled={step === 0} onClick={() => setStep((value) => Math.max(0, value - 1))}>
+              ← Previous step
+            </button>
+            <span>Step {step + 1} of {STEP_LABELS.length}</span>
+            <button type="button" className="primary" disabled={step === STEP_LABELS.length - 1} onClick={() => setStep((value) => Math.min(STEP_LABELS.length - 1, value + 1))}>
+              Next step →
+            </button>
+          </>
+        )}
       </footer>
     </section>
   );

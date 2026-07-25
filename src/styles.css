@@ -213,6 +213,13 @@ button.primary { border: 1px solid transparent; background: var(--accent-gradien
 button.primary:hover { filter: brightness(1.08); }
 button.secondary { border: 1px solid var(--border); background: var(--panel-soft); color: var(--text); }
 button.secondary:hover { background: var(--panel-raised); border-color: var(--dim); }
+button.solution-btn {
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 0.85rem 1.7rem;
+  background: linear-gradient(135deg, #22c58b 0%, #16a673 100%);
+  box-shadow: 0 0 0 1px rgba(34, 197, 139, 0.4), 0 8px 24px rgba(34, 197, 139, 0.25);
+}
 button.full { width: 100%; }
 
 .lesson { overflow: hidden; }
@@ -250,7 +257,7 @@ button.full { width: 100%; }
   padding: 10px 20px;
   border-bottom: 1px solid var(--border-soft);
 }
-.module-nav-count { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; }
+.module-nav-count { font-size: 1rem; font-weight: 800; color: var(--text); letter-spacing: 0.01em; }
 .icon-btn {
   display: grid;
   place-items: center;
@@ -265,6 +272,7 @@ button.full { width: 100%; }
 }
 .icon-btn:disabled { opacity: 0.35; }
 .icon-btn:not(:disabled):hover { border-color: var(--accent); color: var(--accent); }
+.icon-btn { width: 34px; height: 34px; font-size: 1.2rem; }
 
 .stepper { padding: 14px 20px 10px; border-bottom: 1px solid var(--border-soft); }
 .stepper-track { position: relative; display: flex; justify-content: space-between; }
@@ -337,17 +345,15 @@ button.full { width: 100%; }
   font-size: clamp(1rem, 2vw, 1.25rem);
 }
 .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; }
-.input-origin-list { display: grid; gap: 8px; }
-.input-origin-list > div {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 12px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--panel-soft);
+
+.formula-columns { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.formula-side-stack { display: grid; gap: 12px; }
+.warning-box.compact, .memory-box.compact { padding: 12px; }
+.warning-box.compact p, .memory-box.compact strong { font-size: 0.88rem; }
+.decision-rule { margin: 10px 0 0; color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 900px) {
+  .formula-columns { grid-template-columns: 1fr; }
 }
-.input-origin-list p { margin: 0; }
 
 .numbered-steps { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .numbered-steps li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }
@@ -400,13 +406,13 @@ button.full { width: 100%; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 16px;
+  gap: 14px;
+  border-top: 1px solid var(--border-soft);
+  padding: 10px 24px;
   background: var(--panel-soft);
 }
-.memory-actions p { margin-bottom: 0; }
+.memory-actions > span { color: var(--muted); font-size: 0.86rem; font-weight: 600; }
+.memory-actions .button-row button { padding: 0.55rem 1rem; font-size: 0.85rem; }
 .bank-view, .mock-card, .empty-state { padding: 22px; }
 .bank-list { display: grid; gap: 4px; margin-top: 16px; }
 .bank-list > button { justify-content: space-between; border: 1px solid transparent; }
@@ -493,7 +499,21 @@ button.full { width: 100%; }
   .lesson-body { min-height: 0; padding: 15px; }
   .lesson-footer { display: grid; grid-template-columns: 1fr 1fr; padding: 12px 15px; }
   .lesson-footer span { grid-column: 1 / -1; grid-row: 1; text-align: center; }
-  .input-origin-list > div { grid-template-columns: 1fr; }
   .memory-actions { display: grid; }
   .question-meta { display: grid; }
+}
+
+/* Desktop: fit the whole workspace in the viewport, no page-level scroll.
+   Only the lesson body scrolls internally; header/nav/footer stay put. */
+@media (min-width: 900px) {
+  html, body { height: 100%; overflow: hidden; }
+  #root { height: 100%; }
+  .app-shell { height: 100vh; display: flex; flex-direction: column; }
+  .topbar, .dashboard { flex: 0 0 auto; }
+  .workspace { flex: 1 1 auto; min-height: 0; align-items: stretch; }
+  .sidebar { max-height: 100%; top: 0; }
+  .workspace > main { min-height: 0; }
+  .lesson { height: 100%; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .lesson-body { flex: 1 1 auto; overflow-y: auto; min-height: 0; }
+  .lesson-header, .module-nav, .stepper, .memory-actions, .lesson-footer { flex: 0 0 auto; }
 }
