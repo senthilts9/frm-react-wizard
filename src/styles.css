@@ -242,37 +242,75 @@ button.full { width: 100%; }
 .pill-accent { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); background: var(--accent-soft); color: var(--accent); }
 .pill-success { background: var(--success-soft); color: var(--success); border-color: color-mix(in srgb, var(--success) 30%, var(--border)); }
 
-.stepper {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1px;
+.module-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 20px;
   border-bottom: 1px solid var(--border-soft);
-  background: var(--border-soft);
 }
-.stepper button {
-  min-width: 0;
+.module-nav-count { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; }
+.icon-btn {
   display: grid;
-  justify-items: center;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel-soft);
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+.icon-btn:disabled { opacity: 0.35; }
+.icon-btn:not(:disabled):hover { border-color: var(--accent); color: var(--accent); }
+
+.stepper { padding: 14px 20px 10px; border-bottom: 1px solid var(--border-soft); }
+.stepper-track { position: relative; display: flex; justify-content: space-between; }
+.stepper-track::before,
+.stepper-track::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+}
+.stepper-track::before { background: var(--border-soft); }
+.stepper-track::after {
+  right: auto;
+  background: var(--accent-gradient);
+  width: calc((100% - 26px) * var(--progress, 0));
+  transition: width 0.2s ease;
+}
+.stepper-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 6px;
   border: 0;
-  background: var(--panel);
+  background: none;
+  padding: 0;
   color: var(--muted);
-  padding: 0.7rem 0.25rem;
-  font-size: 0.76rem;
-  font-weight: 600;
 }
-.stepper button span {
+.stepper-node .node-dot {
   display: grid;
   place-items: center;
   width: 26px;
   height: 26px;
   border: 1px solid var(--border);
   border-radius: 50%;
+  background: var(--panel);
+  font-size: 0.76rem;
   font-weight: 700;
 }
-.stepper button.active { color: var(--accent); }
-.stepper button.active span { border-color: transparent; background: var(--accent-gradient); color: #fff; box-shadow: var(--accent-glow); }
-.stepper button.done span { border-color: color-mix(in srgb, var(--success) 40%, var(--border)); background: var(--success-soft); color: var(--success); }
+.stepper-node .node-label { font-size: 0.7rem; font-weight: 600; }
+.stepper-node.active { color: var(--text); }
+.stepper-node.active .node-dot { border-color: transparent; background: var(--accent-gradient); color: #fff; box-shadow: var(--accent-glow); }
+.stepper-node.done .node-dot { border-color: color-mix(in srgb, var(--success) 40%, var(--border)); background: var(--success-soft); color: var(--success); }
 
 .lesson-body { min-height: 480px; padding: 24px; }
 .section-stack { display: grid; gap: 20px; }
@@ -450,10 +488,8 @@ button.full { width: 100%; }
   .main-tabs button { flex: 1 0 auto; }
   .lesson-header { display: grid; padding: 15px; }
   .memory-picker { min-width: 0; }
-  .stepper {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .stepper button { min-height: 66px; }
+  .stepper-node .node-label { display: none; }
+  .stepper-node.active .node-label { display: block; }
   .lesson-body { min-height: 0; padding: 15px; }
   .lesson-footer { display: grid; grid-template-columns: 1fr 1fr; padding: 12px 15px; }
   .lesson-footer span { grid-column: 1 / -1; grid-row: 1; text-align: center; }

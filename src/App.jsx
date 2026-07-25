@@ -3,7 +3,7 @@ import modules from "./data/modules.json";
 import { MockAnswersBank } from "./MockAnswersBank.jsx";
 
 const MEMORY_LEVELS = ["New", "Learning", "Remembered", "Mastered"];
-const STEP_LABELS = ["Concept", "Triggers", "Why it works", "Notation & inputs", "Worked example", "Practice"];
+const STEP_LABELS = ["Concept", "Triggers", "Why", "Formula", "Example", "Practice"];
 
 function usePersistentState(key, initialValue) {
   const [value, setValue] = useState(() => {
@@ -39,24 +39,46 @@ function Pill({ children, tone = "neutral" }) {
 }
 
 function Stepper({ step, setStep }) {
+  const progress = step / (STEP_LABELS.length - 1);
   return (
     <nav className="stepper" aria-label="Lesson steps">
-      {STEP_LABELS.map((label, index) => (
-        <button
-          key={label}
-          type="button"
-          className={index === step ? "active" : index < step ? "done" : ""}
-          onClick={() => setStep(index)}
-        >
-          <span>{index + 1}</span>
-          {label}
-        </button>
-      ))}
+      <div className="stepper-track" style={{ "--progress": progress }}>
+        {STEP_LABELS.map((label, index) => (
+          <button
+            key={label}
+            type="button"
+            className={`stepper-node ${index === step ? "active" : index < step ? "done" : ""}`}
+            onClick={() => setStep(index)}
+            aria-current={index === step ? "step" : undefined}
+          >
+            <span className="node-dot">{index < step ? "✓" : index + 1}</span>
+            <span className="node-label">{label}</span>
+          </button>
+        ))}
+      </div>
     </nav>
   );
 }
 
-function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, setQuestionStats }) {
+function ModuleNav({ moduleList, currentId, onJump, topicLabel }) {
+  const index = moduleList.findIndex((m) => m.id === currentId);
+  if (index === -1 || moduleList.length <= 1) return null;
+  const atStart = index === 0;
+  const atEnd = index === moduleList.length - 1;
+  return (
+    <div className="module-nav">
+      <button type="button" className="icon-btn" disabled={atStart} aria-label="Previous module" onClick={() => onJump(moduleList[index - 1].id)}>
+        ‹
+      </button>
+      <span className="module-nav-count">{topicLabel} · {index + 1}/{moduleList.length}</span>
+      <button type="button" className="icon-btn" disabled={atEnd} aria-label="Next module" onClick={() => onJump(moduleList[index + 1].id)}>
+        ›
+      </button>
+    </div>
+  );
+}
+
+function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, setQuestionStats, moduleList, topicLabel, onJumpModule }) {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -117,6 +139,8 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
           </select>
         </label>
       </header>
+
+      <ModuleNav moduleList={moduleList} currentId={module.id} onJump={onJumpModule} topicLabel={topicLabel} />
 
       <Stepper step={step} setStep={setStep} />
 
@@ -283,9 +307,9 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
 
               <div className="button-row">
                 <button type="button" className="secondary" onClick={() => setShowHint((value) => !value)}>
-                  {showHint ? "Hide hint" : "Show hint"}
+                  {showHint ? "Hide hint" : "Hint"}
                 </button>
-                <button type="button" className="primary" onClick={revealSolution}>Reveal full solution</button>
+                <button type="button" className="primary" onClick={revealSolution}>Show solution</button>
               </div>
 
               {showHint && <div className="hint-box"><strong>Hint:</strong> {question.hint}</div>}
@@ -319,7 +343,7 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
                     setWorking("");
                   }}
                 >
-                  Previous question
+                  ← Prev
                 </button>
                 <button
                   type="button"
@@ -333,7 +357,7 @@ function LessonPanel({ module, step, setStep, memory, setMemory, questionStats, 
                     setWorking("");
                   }}
                 >
-                  Next question
+                  Next →
                 </button>
               </div>
             </article>
@@ -596,6 +620,9 @@ export default function App() {
               setMemory={setMemory}
               questionStats={questionStats}
               setQuestionStats={setQuestionStats}
+              moduleList={filteredModules}
+              topicLabel={topic === "All topics" ? "All modules" : topic}
+              onJumpModule={chooseModule}
             />
           )}
 
